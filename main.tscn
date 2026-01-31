@@ -90,13 +90,13 @@ transform = Transform3D(-0.64253354, 0, 0.76625764, 0, 1, 0, -0.76625764, 0, -0.
 transform = Transform3D(-0.9934846, 0, 0.11396626, 0, 1, 0, -0.11396626, 0, -0.9934846, -1.8564749, 9.536743e-07, 23.334177)
 
 [node name="temple" parent="." unique_id=1640253865 instance=ExtResource("10_efxa6")]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -40.42626, 8.33707, -15.185236)
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 40.47178, 9.234059, -61.981743)
 
 [node name="ruin" parent="." unique_id=817059571 instance=ExtResource("8_4c57u")]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -1.9339428, -1.2110703, 6.6274915)
 
 [node name="RuinTample" parent="." unique_id=1105016889 instance=ExtResource("9_efxa6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 38.889378, 0.5236428, -24.718094)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 38.889378, -10.800892, -24.718094)
 
 [node name="RuinTample2" parent="." unique_id=1778535202 instance=ExtResource("9_efxa6")]
 transform = Transform3D(0, 0, 1.9999999, 0, 2, 0, -1.9999999, 0, 0, -7.292309, 0.5236428, -56.200584)
@@ -120,4 +120,10 @@ transform = Transform3D(-0.6932875, 0, 0.39918965, 0, 0.79999995, 0, -0.39918965
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.8921504, -64.231125, 11.318874)
 
 [node name="Rock_Vertical2" parent="." unique_id=233890857 instance=ExtResource("12_dg77c")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 35.463818, -64.231125, -32.007732)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 37.501476, -59.381714, -23.067047)
+
+[node name="Rock_Vertical3" parent="." unique_id=632940239 instance=ExtResource("12_dg77c")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 37.501476, -59.381714, -23.067047)
+
+[node name="Rock_Vertical4" parent="." unique_id=1637933559 instance=ExtResource("12_dg77c")]
+transform = Transform3D(-2.6226832e-08, 0, -0.59999996, 0, 0.59999996, 0, 0.59999996, 0, -2.6226832e-08, 37.501476, -48.4327, -58.765186)
