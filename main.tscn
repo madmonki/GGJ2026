@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cavob6qsg8dkh" path="res://red_char.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://1eka23u3bhw5" path="res://models/temple.dae" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cr81bhs0tmwni" path="res://models/rock.dae" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://cwoxayixcmtfn" path="res://models/RuinTample.fbx" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://1eo6jp888rxw" path="res://models/ruin.dae" id="9_kek77"]
-[ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -49,7 +49,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor" unique_id=710248306]
-transform = Transform3D(18.233086, 0, 0, 0, 1, 0, 0, 0, 6.6740675, 0, 0, 0)
+transform = Transform3D(18.233086, 0, 0, 0, 1, 0, 0, 0, 6.6740675, -0.12254238, 0.07577276, 0.075489044)
 mesh = SubResource("BoxMesh_1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor" unique_id=418385718]
@@ -65,16 +65,19 @@ is_controlled = true
 is_stationary = false
 starts_with_mask = true
 doom_duration = 7.0
+max_fov_change = 15.0
 
 [node name="RedChar" parent="." unique_id=693896521 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1435976, 0.13660674, 6.128581)
 is_stationary = true
 doom_duration = 7.0
+max_fov_change = 15.0
 
 [node name="GreenChar" parent="." unique_id=412814436 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6013632, 1.0767515, 4.823857)
 is_stationary = false
 doom_duration = 7.0
+max_fov_change = 15.0
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=2142849049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4720442, 0)
@@ -90,9 +93,6 @@ transform = Transform3D(0.8697276, 0, -0.4935321, 0, 1, 0, 0.4935321, 0, 0.86972
 operation = 1
 mesh = SubResource("BoxMesh_lquwl")
 
-[node name="temple" parent="." unique_id=1953874664 instance=ExtResource("7_5vw27")]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -21.218948, 8.361186, 5.033148)
-
 [node name="rock" parent="." unique_id=1324380293 instance=ExtResource("8_kek77")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.527983, 0.14240527, -5.9422235)
 
@@ -104,3 +104,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.535855, 0, 3.246954)
 
 [node name="SM_Ruins_01" parent="." unique_id=980471348 instance=ExtResource("10_4c57u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.4784741)
+
+[node name="temple" parent="." unique_id=1640253865 instance=ExtResource("10_efxa6")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -23.448576, 8.33707, 8.240644)
