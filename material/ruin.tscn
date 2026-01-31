@@ -1,5 +1,7 @@
 [gd_scene format=4 uid="uid://dhe01ao1x0kkl"]
 
+[ext_resource type="Material" uid="uid://i66ln44uxhhq" path="res://material/01basic.tres" id="1_vv6gn"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ms438"]
 resource_name = "Floor"
 cull_mode = 2
@@ -377,6 +379,7 @@ transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=124894788]
 transform = Transform3D(1.127133, 0, 0, 0, 0.060248, 0, 0, 0, 1.127133, 0, 0.00202736, 0)
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_rhlws")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=257489919]
@@ -386,6 +389,7 @@ shape = SubResource("ConcavePolygonShape3D_vv6gn")
 
 [node name="Stand" type="MeshInstance3D" parent="." unique_id=1821273060]
 transform = Transform3D(0.251067, 0, 0, 0, 0.087519, 0, 0, 0, 0.251067, -2.0169999e-05, 0.0028953298, 0)
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_su8dy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Stand" unique_id=1344732786]
@@ -406,6 +410,7 @@ shape = SubResource("ConcavePolygonShape3D_ybm8k")
 mesh = SubResource("ArrayMesh_nrqfd")
 
 [node name="Pillar" type="MeshInstance3D" parent="." unique_id=358835694]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_5waum")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Pillar" unique_id=1335049803]
