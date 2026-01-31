@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bapf7cln2nsya" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://ileyet6te5ot" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bjmarjgbuq2bn" path="res://material/temple.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bq0jko7jowl7q" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c4ierwjsu67ao" path="res://material/rock_vertical.tscn" id="12_dg77c"]
@@ -73,6 +73,18 @@ max_fov_change = 15.0
 
 [node name="RedChar3" parent="." unique_id=767604512 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.416233, -20.198416, -34.504868)
+is_stationary = true
+dash_force = 10.0
+max_fov_change = 15.0
+
+[node name="RedChar13" parent="." unique_id=1276993824 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7112513, -5.191249, -51.926003)
+is_stationary = true
+dash_force = 10.0
+max_fov_change = 15.0
+
+[node name="RedChar14" parent="." unique_id=210084842 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4248323, -8.701937, -44.58059)
 is_stationary = true
 dash_force = 10.0
 max_fov_change = 15.0
@@ -437,6 +449,15 @@ transform = Transform3D(0.033414353, -5.045427e-09, 0.03719517, -7.549789e-09, -
 
 [node name="Rock_Small" parent="." unique_id=426077634 instance=ExtResource("13_ycdy4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.332441, -4.5515556, -13.570662)
+
+[node name="Rock_Small6" parent="." unique_id=1555162200 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.331789, -16.267975, -43.638138)
+
+[node name="Rock_Small7" parent="." unique_id=737574159 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6556149, -9.267836, -46.644165)
+
+[node name="Rock_Small8" parent="." unique_id=1551188022 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0335135, -5.9589257, -53.89724)
 
 [node name="Rock_Small2" parent="." unique_id=1869079048 instance=ExtResource("13_ycdy4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.467951, -18.057934, -4.8993416)
