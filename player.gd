@@ -211,7 +211,7 @@ func _physics_process(delta):
 func _handle_controlled_movement(delta):
 	if is_dashing: return
 	
-	var is_sprinting = Input.is_action_pressed("sprint") and can_sprint
+	var is_sprinting = Input.is_action_pressed("sprint") and can_sprint and is_on_floor()
 	var current_speed = sprint_speed if is_sprinting else walk_speed
 	
 	if is_on_floor():
