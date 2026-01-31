@@ -1,2 +1,5 @@
+CollisionShape3D
+StaticBody3D
+CollisionPolygon3D
 CSGCombiner3D
 CSGMesh3D
