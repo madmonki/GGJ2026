@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://1eka23u3bhw5" path="res://models/temple.dae" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cr81bhs0tmwni" path="res://models/rock.dae" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://1eo6jp888rxw" path="res://models/ruin.dae" id="9_kek77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -98,3 +99,6 @@ transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -21.218948, 8.361186
 
 [node name="rock" parent="." unique_id=1324380293 instance=ExtResource("8_kek77")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.527983, 0.14240527, -5.9422235)
+
+[node name="ruin" parent="." unique_id=817059571 instance=ExtResource("9_kek77")]
+transform = Transform3D(-500, 0, -866.0253, 0, 999.99994, 0, 866.0253, 0, -500, -24.427206, -1.2949371, 28.89109)
