@@ -4,6 +4,8 @@ class_name Player
 @export var walk_speed = 5.0
 @export var sprint_speed = 9.0
 @export var jump_velocity = 9.0
+@export var fall_gravity_multiplier = 2.0
+@export var short_jump_gravity_multiplier = 2.0
 @export var sensitivity = 0.003
 @export var max_charge_time = 2.0
 @export var min_throw_force = 5.0
@@ -183,7 +185,15 @@ func _physics_process(delta):
 		camera.fov = lerp(camera.fov, base_fov, delta * 5.0)
 
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		var applied_gravity = gravity
+		if velocity.y < 0:
+			# Falling: Use fall multiplier
+			applied_gravity *= fall_gravity_multiplier
+		elif velocity.y > 0 and not Input.is_action_pressed("jump"):
+			# Rising but jump released: Use short jump multiplier
+			applied_gravity *= short_jump_gravity_multiplier
+			
+		velocity.y -= applied_gravity * delta
 
 	if is_transitioning:
 		velocity.x = 0

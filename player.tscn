@@ -18,7 +18,7 @@ dash_force = 100.0
 max_fov_change = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=529467504]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.10359353)
 shape = SubResource("CapsuleShape3D_1")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="." unique_id=1060403243]
@@ -30,7 +30,7 @@ transform = Transform3D(0.8344968, 0, 0, 0, 0.8344968, 0, 0, 0, 0.8344968, 0, 1.
 mesh = SubResource("SphereMesh_1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=591563879]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3714169, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3714169, -0.49534106)
 
 [node name="ThrowPoint" type="Marker3D" parent="Camera3D" unique_id=1163118203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

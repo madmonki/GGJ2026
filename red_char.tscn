@@ -3,4 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://lpnydhxpayae" path="res://player.tscn" id="1_player"]
 
 [node name="RedChar" unique_id=693896521 instance=ExtResource("1_player")]
+jump_velocity = 10.0
 char_color = Color(0.9, 0.6, 0.6, 1)
