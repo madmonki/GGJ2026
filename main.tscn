@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
-[ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
-[ext_resource type="PackedScene" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
-[ext_resource type="PackedScene" path="res://material/rock_vertical.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://dyaj8oftvgpev" path="res://material/rock_vertical.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://crxambkx2cwmk" path="res://material/rock_small.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://la6uxll6rm54" path="res://material/bridge.tscn" id="14_w48qg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.26735166, 0.48610437, 0.5399706, 1)
@@ -194,6 +195,9 @@ transform = Transform3D(0.34900802, 0.17592993, 0.08510035, -0.19092244, 0.26973
 [node name="Rock_Vertical4" parent="." unique_id=1637933559 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-2.6226832e-08, 0, -0.59999996, 0, 0.59999996, 0, 0.59999996, 0, -2.6226832e-08, 37.501476, -48.4327, -58.765186)
 
+[node name="Rock_Vertical40" parent="." unique_id=2134987320 instance=ExtResource("12_dg77c")]
+transform = Transform3D(-2.6226832e-08, 0, -0.59999996, 0, 0.59999996, 0, 0.59999996, 0, -2.6226832e-08, -13.6083145, -48.4327, -58.765186)
+
 [node name="Rock_Vertical36" parent="." unique_id=503478146 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-2.6226829e-08, 0, -0.5999999, -8.940697e-08, -0.59999996, 5.3290705e-15, -0.59999996, 8.940697e-08, 2.6226829e-08, 24.723438, 21.75476, -84.690315)
 
@@ -341,6 +345,9 @@ transform = Transform3D(0.4985689, 0, 0.03780265, 0, 0.5, 0, -0.03780265, 0, 0.4
 [node name="Rock_Horizontal8" parent="." unique_id=51907965 instance=ExtResource("11_efxa6")]
 transform = Transform3D(0.39885515, 0, 0.030242125, 0, 0.4, 0, -0.030242125, 0, 0.39885515, 32.167797, -12.84324, -26.278286)
 
+[node name="Rock_Horizontal16" parent="." unique_id=118533195 instance=ExtResource("11_efxa6")]
+transform = Transform3D(0.39885515, 0, 0.030242125, 0, 0.4, 0, -0.030242125, 0, 0.39885515, -7.127384, -12.84324, -64.37775)
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=426823353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93579197, 12.379229, 5.6420965)
 light_color = Color(1, 0.41960785, 1, 1)
@@ -372,3 +379,6 @@ omni_range = 21.933353
 [node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=2139391337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29368, 13.401131, 7.1690283)
 light_color = Color(1, 0.41960785, 1, 1)
+
+[node name="Bridge" parent="." unique_id=987366294 instance=ExtResource("14_w48qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.597839, 0.65353394, -62.728867)
