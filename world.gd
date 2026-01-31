@@ -6,18 +6,16 @@ extends Node3D
 @onready var green_char_scene = preload("res://green_char.tscn")
 func _ready():
 	# Clear any residual children (walls, characters, stray masks)
-	for child in get_children():
-		if child is StaticBody3D and "Wall" in child.name:
-			child.queue_free()
-		if child.is_in_group("characters") and not child.is_controlled:
-			child.queue_free()
-		if child.is_in_group("masks"):
-			# Only remove if it's not currently being thrown or attached to a character
-			if not (child.get("is_attached") or child.get("was_thrown")):
-				child.queue_free()
-
-	create_parkour_level()
-
+	# Clear any residual children (walls, characters, stray masks)
+	# for child in get_children():
+	# 	if child is StaticBody3D and "Wall" in child.name:
+	# 		child.queue_free()
+	# 	# Removed aggressive character cleanup to allow manual placement
+	# 	if child.is_in_group("masks"):
+	# 		# Only remove if it's not currently being thrown or attached to a character
+	# 		if not (child.get("is_attached") or child.get("was_thrown")):
+	# 			child.queue_free()
+	#create_parkour_level()
 func create_parkour_level():
 	# Base Floor (Y=0) is our starting area
 	# STAGE 1: CLIMB TO RED

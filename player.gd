@@ -76,7 +76,8 @@ func possess():
 		held_mask_visual.visible = has_mask
 	
 	# Set attached mask transparency if it exists
-	for child in get_children():
+	# Set attached mask transparency if it exists
+	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
 			child.set_transparency(0.8) # 80% transparent to not block view
 
@@ -89,7 +90,8 @@ func unpossess():
 		held_mask_visual.visible = false
 	
 	# Reset attached mask transparency
-	for child in get_children():
+	# Reset attached mask transparency
+	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
 			child.set_transparency(0.0)
 			
@@ -103,8 +105,8 @@ func _update_wander_direction():
 
 func _add_initial_mask():
 	var mask = mask_scene.instantiate()
-	add_child(mask)
-	mask.attach_to(self)
+	camera.add_child(mask)
+	mask.attach_to(camera)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -213,7 +215,7 @@ func _try_pickup_mask() -> bool:
 		var collider = interaction_ray.get_collider()
 		if collider.is_in_group("masks") and not collider.is_attached:
 			# Pickup goes to face now instead of hand
-			collider.attach_to(self)
+			collider.attach_to(camera)
 			has_mask = false # Stays on face until detached
 			if held_mask_visual:
 				held_mask_visual.visible = false
@@ -236,7 +238,7 @@ func _detach_own_mask():
 	if is_transitioning or is_detaching_self: return
 	
 	current_detaching_mask = null
-	for child in get_children():
+	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
 			current_detaching_mask = child
 			break
@@ -333,7 +335,7 @@ func throw_mask():
 func has_attached_mask() -> bool:
 	if has_mask: return true # Holding it counts as having it safely
 	
-	for child in get_children():
+	for child in camera.get_children():
 		if child.is_in_group("masks") and child.get("is_attached"):
 			return true
 	return false

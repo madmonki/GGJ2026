@@ -57,7 +57,8 @@ func attach_to(target):
 	call_deferred("_finalize_attachment")
 
 func _finalize_attachment():
-	transform.origin = Vector3(0, 1.4, -0.4)
+	# Relative to Camera3D (which is at ~1.4 height)
+	transform.origin = Vector3(0, 0, -0.55)
 	rotation = Vector3.ZERO
 
 func set_transparency(value: float):
