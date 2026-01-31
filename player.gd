@@ -41,7 +41,7 @@ var is_dashing = false
 @onready var head_mesh = $HeadMesh
 
 
-@export var doom_duration = 7.0
+@export var doom_duration = 15.0
 var doom_timer = 0.0
 var doom_active = false
 var is_dead = false
@@ -397,10 +397,18 @@ func has_attached_mask() -> bool:
 @onready var corpse_scene = preload("res://corpse.tscn")
 
 func die():
-	# 1. Disable player node (so we don't move/interact)
+	# 1. Disable player node
 	set_physics_process(false)
+	
+	# Capture state BEFORE resetting it
+	var was_controlled_local = is_controlled
+	
+	# Only release mouse if WE were the one dying
+	if was_controlled_local:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameEvents.trigger_game_over()
+		
 	is_controlled = false
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	# 2. Spawn Corpse
 	var corpse = corpse_scene.instantiate()
@@ -417,30 +425,32 @@ func die():
 		corpse.get_node("HeadMesh").set_surface_override_material(0, mat)
 		
 	# 4. Transfer Camera to Corpse (so we see the fall)
-	# We reparent to the CameraMount node if it exists, otherwise the corpse root
 	var cam_parent = corpse
 	if corpse.has_node("CameraMount"):
 		cam_parent = corpse.get_node("CameraMount")
-		
-	# Reparent camera, keeping global transform so there's no jump
 	camera.reparent(cam_parent, true)
 	
-	# 5. Apply "Slight Kick" to initiate tipover
-	# If player was controlled, fail backwards (dramatic fall)
-	var was_controlled_local = is_controlled # Captured before we disabled it
+	# 5. Apply Death Physics
 	if was_controlled_local:
-		GameEvents.trigger_game_over()
-		# Kick chest backwards to fall on back
-		# We use basis.z (forward) for kick direction to push FEET forward?
-		# No, apply_central_impulse pushes center. To fall on back, push center BACKWARDS (-z).
-		# Wait, if I push center backwards, they fly backwards. If I push feet forward, they tip back.
-		# Let's push center backwards strongly.
-		var kick_dir = - global_transform.basis.z + Vector3(randf_range(-0.2, 0.2), 0, randf_range(-0.2, 0.2))
-		corpse.apply_central_impulse(kick_dir * 8.0)
-		# Add back-flip torque
-		corpse.apply_torque_impulse(global_transform.basis.x * -10.0)
+		# Player Death: Guaranteed backward fall to see the sky
+		# Push the HEAD (offset) BACKWARDS
+		# Head is roughly at height 1.4
+		var head_offset = Vector3(0, 1.4, 0)
+		var backward_dir = global_transform.basis.z # basis.z is backward in Godot?
+		# Wait, -basis.z is forward. basis.z is backward.
+		# So to push backward, we push in direction basis.z
+		
+		# Let's verify direction:
+		# -z is forward "look". We want to fall "on back".
+		# So feet go forward, head goes backward.
+		# Pushing head BACKWARD means pushing in +z (local). 
+		# global_transform.basis.z points backward.
+		
+		var push_dir = global_transform.basis.z
+		corpse.apply_impulse(push_dir * 30.0, head_offset) # Strong push at head height
+		
 	else:
-		# Random logic for NPCs
+		# Random NPC death
 		var kick_dir = - global_transform.basis.z + Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
 		corpse.apply_central_impulse(kick_dir.normalized() * 5.0)
 		corpse.apply_torque_impulse(Vector3(randf(), 0, randf()) * 2.0)
