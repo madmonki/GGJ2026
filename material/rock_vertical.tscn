@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dyaj8oftvgpev"]
+
+[ext_resource type="PackedScene" uid="uid://bcn6a6efta1n3" path="res://models/Rock_Vertical.fbx" id="1_51bn8"]
+
+[node name="Rock_Vertical" unique_id=302111113 instance=ExtResource("1_51bn8")]

@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769876155
+::res://::1769876386
 blue_char.tscn::PackedScene::1846501978484749578::1769874366::0::1::::<><><>0<>0<><>::uid://lpnydhxpayae::::res://player.tscn
 colorless_char.tscn::PackedScene::-1::1769866579::0::1::::<><><>0<>0<><>::uid://lpnydhxpayae::::res://player.tscn
 corpse.tscn::PackedScene::2945804665701899114::1769873641::0::1::::<><><>0<>0<><>::
@@ -7,7 +7,7 @@ game_events.gd::GDScript::7579083230690350979::1769873638::0::1::::<>Node<><>0<>
 green_char.tscn::PackedScene::8144001280965377452::1769868384::0::1::::<><><>0<>0<><>::uid://lpnydhxpayae::::res://player.tscn
 hud.gd::GDScript::6872021442908141475::1769873638::0::1::::<>CanvasLayer<><>0<>0<><>::
 hud.tscn::PackedScene::532823867638987633::1769866579::0::1::::<><><>0<>0<><>::res://hud.gd
-main.tscn::PackedScene::1960023902657331362::1769876155::0::1::::<><><>0<>0<><>::uid://1kpvaglrmd6q::::res://blue_char.tscn<>uid://dxaiyqfjiobf5::::res://world.gd<>uid://cavob6qsg8dkh::::res://red_char.tscn<>uid://hudscene1234::::res://hud.tscn<>uid://dobarm8615hkm::::res://green_char.tscn<>uid://dhe01ao1x0kkl::::res://material/ruin.tscn<>uid://b0dur0dawx1uu::::res://material/ruin_tample.tscn<>res://sm_ruins_01.tscn<>uid://cmxf144qtdgy0::::res://material/rock.tscn<>uid://b3bfrtrvjjnvw::::res://material/temple.tscn
+main.tscn::PackedScene::1960023902657331362::1769876386::0::1::::<><><>0<>0<><>::uid://1kpvaglrmd6q::::res://blue_char.tscn<>uid://dxaiyqfjiobf5::::res://world.gd<>uid://cavob6qsg8dkh::::res://red_char.tscn<>uid://hudscene1234::::res://hud.tscn<>uid://dobarm8615hkm::::res://green_char.tscn<>uid://dhe01ao1x0kkl::::res://material/ruin.tscn<>uid://b0dur0dawx1uu::::res://material/ruin_tample.tscn<>res://sm_ruins_01.tscn<>uid://cmxf144qtdgy0::::res://material/rock.tscn<>uid://b3bfrtrvjjnvw::::res://material/temple.tscn<>uid://gjyjjlwkyul2::::res://material/rock_horizontal.tscn
 mask.gd::GDScript::327212844843875810::1769871378::0::1::::<>RigidBody3D<><>0<>0<><>::
 mask.tscn::PackedScene::-1::1769866579::0::1::::<><><>0<>0<><>::res://mask.gd
 player.gd::GDScript::4731964475157370843::1769874852::0::1::::Player<>CharacterBody3D<><>0<>0<><>::
@@ -16,14 +16,16 @@ red_char.tscn::PackedScene::4817046777681974415::1769868346::0::1::::<><><>0<>0<
 rotating_cube.gd::GDScript::7430694068892738605::1769866579::0::1::::<>MeshInstance3D<><>0<>0<><>::
 sm_ruins_01.tscn::PackedScene::-1::1769871381::0::1::::<><><>0<>0<><>::
 world.gd::GDScript::8774134898267682716::1769868346::0::1::::<>Node3D<><>0<>0<><>::
-::res://material/::1769874669
+::res://material/::1769876415
 01basic.tres::StandardMaterial3D::627409058936972658::1769874497::0::1::::<><><>0<>0<><>::
+rock_horizontal.tscn::PackedScene::441186232303180865::1769876415::0::1::::<><><>0<>0<><>::uid://ci114rscda8rc::::res://models/Rock_Horizontal.fbx
 ruin_tample.tscn::PackedScene::4148580924006303484::1769874512::0::1::::<><><>0<>0<><>::uid://i66ln44uxhhq::::res://material/01basic.tres<>uid://dekn6qurqfg4v::::res://models/RuinTample_0.png<>uid://duj4et8i1pn7k::::res://models/RuinTample_1.png<>uid://cdux333o51lq6::::res://models/RuinTample_2.png<>uid://bwj7ibnb7h1h0::::res://models/RuinTample_3.png<>uid://bh11j6qpi7ph3::::res://models/RuinTample_4.png<>uid://bjoawt3kjhuh2::::res://models/RuinTample_5.png
 rock.tscn::PackedScene::5662939763720290281::1769874497::0::1::::<><><>0<>0<><>::uid://cr81bhs0tmwni::::res://models/rock.dae<>uid://i66ln44uxhhq::::res://material/01basic.tres
 ruin.tscn::PackedScene::7660405845862770943::1769874669::0::1::::<><><>0<>0<><>::uid://i66ln44uxhhq::::res://material/01basic.tres
 temple.tscn::PackedScene::4354107651944151372::1769871588::0::1::::<><><>0<>0<><>::uid://1eka23u3bhw5::::res://models/temple.dae
-::res://models/::1769876261
+::res://models/::1769876475
 Rock_Horizontal.fbx::PackedScene::5389657288729535928::1769876261::1769876262::1::::<><><>0<>0<>18aa66206a781b42fa01b39f5aebe100<>res://.godot/imported/Rock_Horizontal.fbx-6d807f55c3c7101c1ef117353e061b1f.scn::
+Rock_Vertical.fbx::PackedScene::2555519143203373454::1769876475::1769876476::1::::<><><>0<>0<>ba222bdfecc57a55a004d5fb25ce01d2<>res://.godot/imported/Rock_Vertical.fbx-737537cf93d578363e9e7adf679d2ff8.scn::
 RuinTample_5.png::CompressedTexture2D::3047061894122993249::1769869803::1769869804::1::::<><><>0<>0<>a4759356759d6fdf80d98da757186e5d<>res://.godot/imported/RuinTample_5.png-f8f4af6b2cf4218c17ab7629585cc5d3.s3tc.ctex::
 RuinTample_4.png::CompressedTexture2D::2933012778356176550::1769869803::1769869804::1::::<><><>0<>0<>6148a881774dbd8063243fbd48e0808f<>res://.godot/imported/RuinTample_4.png-b3a90d632e346d60719c271d66899f9d.s3tc.ctex::
 RuinTample_3.png::CompressedTexture2D::3951111946330428679::1769869803::1769869804::1::::<><><>0<>0<>405f9b24f0bd9984d0201a5d0bc08cc7<>res://.godot/imported/RuinTample_3.png-be11865416171476361720d7296ecf26.s3tc.ctex::
