@@ -388,7 +388,7 @@ mesh = SubResource("ArrayMesh_rhlws")
 shape = SubResource("ConcavePolygonShape3D_vv6gn")
 
 [node name="Stand" type="MeshInstance3D" parent="." unique_id=1821273060]
-transform = Transform3D(0.251067, 0, 0, 0, 0.087519, 0, 0, 0, 0.251067, -2.0169999e-05, 0.0028953298, 0)
+transform = Transform3D(0.251067, 0, 0, 0, 0.08751899, 0, 0, 0, 0.251067, -2.0169999e-05, 0.0027223104, 0)
 material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_su8dy")
 

@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
-[ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
-[ext_resource type="PackedScene" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bcn6a6efta1n3" path="res://models/Rock_Vertical.fbx" id="12_dg77c"]
-[ext_resource type="PackedScene" path="res://material/rock_small.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://iefte737dwwo" path="res://material/rock_small.tscn" id="13_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -27,6 +27,8 @@ background_mode = 2
 sky = SubResource("Sky_1")
 tonemap_mode = 2
 ssao_enabled = true
+ssao_radius = 2.3
+ssao_intensity = 5.01
 glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
@@ -41,7 +43,10 @@ environment = SubResource("Environment_1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1941903374]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.275
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.77
 
 [node name="Player" parent="." unique_id=1302333533 instance=ExtResource("1_blue_char")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.735271, 3.1155066, 6.612175)
@@ -153,3 +158,35 @@ transform = Transform3D(0.4985689, 0, 0.03780265, 0, 0.5, 0, -0.03780265, 0, 0.4
 
 [node name="Rock_Horizontal8" parent="." unique_id=51907965 instance=ExtResource("11_efxa6")]
 transform = Transform3D(0.39885515, 0, 0.030242125, 0, 0.4, 0, -0.030242125, 0, 0.39885515, 32.167797, -12.84324, -26.278286)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=426823353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93579197, 6.9236054, 5.6420965)
+light_color = Color(1, 0.41960785, 1, 1)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=930060539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4597139, 14.014284, 15.879826)
+light_color = Color(0.604813, 0.6801225, 1, 1)
+light_energy = 2.614
+omni_range = 21.933353
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="." unique_id=1488571460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.111743, 7.079006, 3.879569)
+light_color = Color(1, 0.51117134, 0.75302655, 1)
+light_energy = 2.614
+omni_range = 21.933353
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="." unique_id=179073408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.643085, 1.2468939, -25.533058)
+light_color = Color(0.9999998, 0.5753998, 0.27244112, 1)
+light_energy = 4.509
+omni_range = 21.933353
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="." unique_id=1055541993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.71189, 13.991982, -51.038704)
+light_color = Color(2.8878452e-07, 0.8159633, 0.67113703, 1)
+light_energy = 4.509
+omni_range = 21.933353
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=2139391337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29368, 6.9236054, 7.1690283)
+light_color = Color(1, 0.41960785, 1, 1)
