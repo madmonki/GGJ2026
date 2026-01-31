@@ -399,6 +399,7 @@ shape = SubResource("ConcavePolygonShape3D_t25bc")
 
 [node name="Gem" type="MeshInstance3D" parent="." unique_id=1398571693]
 transform = Transform3D(-0.147054, 0, -0.254705, 0, 0.294108, 0, 0.254705, 0, -0.147054, -2.476e-05, 0.008065689, 0)
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_6eyeo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Gem" unique_id=1623988577]
@@ -407,6 +408,7 @@ mesh = SubResource("ArrayMesh_6eyeo")
 shape = SubResource("ConcavePolygonShape3D_ybm8k")
 
 [node name="Brick12" type="MeshInstance3D" parent="." unique_id=1614931606]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_nrqfd")
 
 [node name="Pillar" type="MeshInstance3D" parent="." unique_id=358835694]
@@ -419,6 +421,7 @@ mesh = SubResource("ArrayMesh_5waum")
 shape = SubResource("ConcavePolygonShape3D_h7o6n")
 
 [node name="polySurface34" type="MeshInstance3D" parent="." unique_id=61600581]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_g7xqd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="polySurface34" unique_id=78307205]
@@ -427,6 +430,7 @@ mesh = SubResource("ArrayMesh_g7xqd")
 shape = SubResource("ConcavePolygonShape3D_0te33")
 
 [node name="polySurface35" type="MeshInstance3D" parent="." unique_id=2143345410]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_xfy8x")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="polySurface35" unique_id=1578394207]
@@ -435,6 +439,7 @@ mesh = SubResource("ArrayMesh_xfy8x")
 shape = SubResource("ConcavePolygonShape3D_ataa6")
 
 [node name="Brick28" type="MeshInstance3D" parent="." unique_id=763194340]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_y8xwf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Brick28" unique_id=1891482084]
@@ -443,6 +448,7 @@ mesh = SubResource("ArrayMesh_y8xwf")
 shape = SubResource("ConcavePolygonShape3D_fbnhs")
 
 [node name="polySurface36" type="MeshInstance3D" parent="." unique_id=1693053193]
+material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_snhbb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="polySurface36" unique_id=2142690118]

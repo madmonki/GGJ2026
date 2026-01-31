@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cavob6qsg8dkh" path="res://red_char.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cr81bhs0tmwni" path="res://models/rock.dae" id="8_kek77"]
-[ext_resource type="PackedScene" uid="uid://cwoxayixcmtfn" path="res://models/RuinTample.fbx" id="9_4c57u"]
-[ext_resource type="PackedScene" uid="uid://1eo6jp888rxw" path="res://models/ruin.dae" id="9_kek77"]
-[ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
+[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
@@ -60,22 +60,25 @@ shape = SubResource("BoxShape3D_1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Player" parent="." unique_id=1302333533 instance=ExtResource("1_blue_char")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 8.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.735271, 3.1155066, 6.612175)
 is_controlled = true
 is_stationary = false
 starts_with_mask = true
 dash_force = 10.0
+doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="RedChar" parent="." unique_id=693896521 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1435976, 0.13660674, 6.128581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1435976, 0.13660674, -12.207928)
 is_stationary = true
 dash_force = 10.0
+doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="GreenChar" parent="." unique_id=412814436 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6013632, 1.0767515, 4.823857)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7808762, 1.6217132, 0.668411)
 is_stationary = false
+doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=2142849049]
@@ -92,17 +95,17 @@ transform = Transform3D(0.8697276, 0, -0.4935321, 0, 1, 0, 0.4935321, 0, 0.86972
 operation = 1
 mesh = SubResource("BoxMesh_lquwl")
 
-[node name="rock" parent="." unique_id=1324380293 instance=ExtResource("8_kek77")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.527983, 0.14240527, -5.9422235)
-
-[node name="ruin" parent="." unique_id=817059571 instance=ExtResource("9_kek77")]
-transform = Transform3D(-500, 0, -866.0253, 0, 999.99994, 0, 866.0253, 0, -500, -24.427206, -1.2949371, 28.89109)
-
-[node name="RuinTample" parent="." unique_id=1105016889 instance=ExtResource("9_4c57u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.535855, 0, 3.246954)
-
 [node name="SM_Ruins_01" parent="." unique_id=980471348 instance=ExtResource("10_4c57u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.4784741)
 
 [node name="temple" parent="." unique_id=1640253865 instance=ExtResource("10_efxa6")]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -23.448576, 8.33707, 8.240644)
+
+[node name="ruin" parent="." unique_id=817059571 instance=ExtResource("8_4c57u")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -1.9339428, -1.2110703, 6.6274915)
+
+[node name="RuinTample" parent="." unique_id=1105016889 instance=ExtResource("9_efxa6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7923133, 0.5236428, 25.021431)
+
+[node name="rock" parent="." unique_id=1324380293 instance=ExtResource("10_dg77c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805479, 0.8823807, 14.269089)
