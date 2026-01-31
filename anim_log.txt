@@ -1,0 +1,11 @@
+Godot Engine v4.6.stable.arch_linux - https://godotengine.org
+
+Inspecting: res://models/Breathing Idle.fbx
+  Found AnimationPlayer
+    Animation: 'mixamo_com' Duration: 7.03333330154419 Loop: 0
+Inspecting: res://models/Walking.fbx
+  Found AnimationPlayer
+    Animation: 'mixamo_com' Duration: 1.03333330154419 Loop: 0
+Inspecting: res://models/Running.fbx
+  Found AnimationPlayer
+    Animation: 'mixamo_com' Duration: 0.63333332538605 Loop: 0

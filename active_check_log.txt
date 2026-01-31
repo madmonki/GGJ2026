@@ -1,0 +1,64 @@
+Godot Engine v4.6.stable.arch_linux - https://godotengine.org
+
+Diagnosing Animation Tracks...
+Loading: res://blue_char.tscn
+ERROR: Parent node is busy setting up children, `add_child()` failed. Consider using `add_child.call_deferred(child)` instead.
+   at: add_child (scene/main/node.cpp:1709)
+   GDScript backtrace (most recent call first):
+       [0] diagnose (res://scripts/diagnose_anim_tracks.gd:12)
+       [1] _ready (res://scripts/diagnose_anim_tracks.gd:5)
+AnimationTree found: AnimationTree
+  Active: true
+  Tree Root: (res://blue_char.tscn::AnimationNodeBlendSpace1D_hwpg2):<AnimationNodeBlendSpace1D#-9223372008216066592>
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2419)
+   GDScript backtrace (most recent call first):
+       [0] diagnose (res://scripts/diagnose_anim_tracks.gd:33)
+       [1] _ready (res://scripts/diagnose_anim_tracks.gd:5)
+AnimationPlayer found at: 
+Root Node Path: ..
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2419)
+   GDScript backtrace (most recent call first):
+       [0] diagnose (res://scripts/diagnose_anim_tracks.gd:40)
+       [1] _ready (res://scripts/diagnose_anim_tracks.gd:5)
+Resolved Root Node: CharacterModel ()
+Animations: [&"Idle", &"Run", &"Walk"]
+Checking Animation: Idle
+  Loop Mode: 1 (0=None, 1=Linear, 2=PingPong)
+Track Count: 29
+  Track 0: Skeleton3D:mixamorig_Hips
+    -> FOUND: Skeleton3D
+  Track 1: Skeleton3D:mixamorig_Hips
+    -> FOUND: Skeleton3D
+  Track 2: Skeleton3D:mixamorig_Spine
+    -> FOUND: Skeleton3D
+  Track 3: Skeleton3D:mixamorig_LeftUpLeg
+    -> FOUND: Skeleton3D
+  Track 4: Skeleton3D:mixamorig_RightUpLeg
+    -> FOUND: Skeleton3D
+ERROR: 1 RID allocations of type 'P11GodotBody3D' were leaked at exit.
+ERROR: 3 RID allocations of type 'P12GodotShape3D' were leaked at exit.
+WARNING: 1 RID of type "Canvas" was leaked.
+     at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2690)
+WARNING: 1 RID of type "CanvasItem" was leaked.
+     at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2690)
+ERROR: Pages in use exist at exit in PagedAllocator: N20RasterizerSceneDummy21GeometryInstanceDummyE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)
+ERROR: 6 RID allocations of type 'N13RendererDummy9DummyMeshE' were leaked at exit.
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+     at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+     at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+WARNING: Leaked instance dependency: Bug - did not call instance_notify_deleted when freeing.
+     at: ~Dependency (servers/rendering/storage/utilities.cpp:56)
+ERROR: 2 RID allocations of type 'N13RendererDummy15MaterialStorage13DummyMaterialE' were leaked at exit.
+ERROR: 1 RID allocations of type 'N13RendererDummy15MaterialStorage11DummyShaderE' were leaked at exit.
+ERROR: 3 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+ERROR: 1 RID allocations of type 'N17RendererSceneCull6CameraE' were leaked at exit.
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object/object.cpp:2641)
+ERROR: 29 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)

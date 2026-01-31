@@ -1,0 +1,6 @@
+Godot Engine v4.6.stable.arch_linux - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Cannot return value of type "AnimationNodeBlendSpace1D" because the function return type is "AnimationNodeStateMachine".
+          at: GDScript::reload (res://scripts/setup_characters.gd:203)
+ERROR: Failed to load script "res://scripts/setup_characters.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

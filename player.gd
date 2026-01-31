@@ -39,9 +39,9 @@ var is_dashing = false
 
 @onready var interaction_ray = $Camera3D/InteractionRay
 @onready var held_mask_visual = $Camera3D/HeldMaskVisual
-@onready var body_mesh = $BodyMesh
-@onready var head_mesh = $HeadMesh
-
+# BodyMesh and HeadMesh were replaced by CharacterModel
+@onready var anim_tree = $AnimationTree
+var model_mesh_instance: MeshInstance3D = null
 
 var doom_duration = 100
 var doom_timer = 0.0
@@ -51,6 +51,13 @@ var is_dead = false
 func _ready():
 	add_to_group("characters")
 	doom_timer = doom_duration
+	
+	# Attempt to find the new mesh instance for coloring
+	if has_node("CharacterModel"):
+		var model = $CharacterModel
+		# Common mixamo structure: Root -> Skeleton3D -> Mesh
+		# Or just search recursively
+		model_mesh_instance = _find_first_mesh(model)
 	
 	if starts_with_mask:
 		is_holding_mask = false
@@ -63,22 +70,40 @@ func _ready():
 	else:
 		unpossess()
 
+func _find_first_mesh(node: Node) -> MeshInstance3D:
+	if node is MeshInstance3D:
+		return node
+	for child in node.get_children():
+		var res = _find_first_mesh(child)
+		if res: return res
+	return null
+
 func _process(delta):
 	# Doom timer logic
 	if doom_active and not is_dead:
 		doom_timer -= delta
 		if doom_timer <= 0:
 			die()
+			
+	# Update Animation
+	if anim_tree:
+		var speed = Vector2(velocity.x, velocity.z).length()
+		anim_tree.set("parameters/blend_position", speed)
+		# print("Speed: ", speed, " Blend: ", anim_tree.get("parameters/blend_position"))
+	else:
+		if Engine.get_process_frames() % 60 == 0:
+			print("AnimTree not found in player")
 
 func _apply_char_color():
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = char_color
 	mat.roughness = 0.8
 	
-	if body_mesh:
-		body_mesh.set_surface_override_material(0, mat)
-	if head_mesh:
-		head_mesh.set_surface_override_material(0, mat)
+	if model_mesh_instance:
+		# Apply to all surfaces just in case
+		for i in range(model_mesh_instance.mesh.get_surface_count()):
+			model_mesh_instance.set_surface_override_material(i, mat)
+
 
 func possess():
 	is_controlled = true
