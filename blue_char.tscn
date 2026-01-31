@@ -7,4 +7,3 @@ sprint_speed = 12.0
 jump_velocity = 6.0
 is_stationary = true
 char_color = Color(0.6, 0.7, 0.9, 1)
-doom_duration = 10.0
