@@ -6,17 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
-[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
-[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://dyaj8oftvgpev" path="res://material/rock_vertical.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" path="res://material/rock_vertical.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://crxambkx2cwmk" path="res://material/rock_small.tscn" id="13_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
-sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
-sky_horizon_color = Color(0.646275, 0.655686, 0.670588, 1)
+sky_top_color = Color(0.26735166, 0.48610437, 0.5399706, 1)
+sky_horizon_color = Color(0.7968593, 0.5854, 0.66271514, 1)
 ground_horizon_color = Color(0.646275, 0.655686, 0.670588, 1)
 
 [sub_resource type="Sky" id="Sky_1"]
@@ -30,6 +30,8 @@ ssao_enabled = true
 ssao_radius = 2.3
 ssao_intensity = 5.01
 glow_enabled = true
+fog_enabled = true
+fog_density = 0.02
 
 [sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
 

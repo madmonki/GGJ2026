@@ -12,7 +12,7 @@ func _ready():
 	_apply_theme()
 	
 	# Create procedural level
-	create_parkour_level()
+	#create_parkour_level()
 
 func _apply_theme():
 	for child in get_children():
