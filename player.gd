@@ -142,8 +142,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		mouse_input_x = event.relative.x
 		rotate_y(-event.relative.x * sensitivity)
-		camera.rotate_x(-event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+		
+		# Modify Euler X directly (pitch) to stay aligned with horizon regardless of roll
+		# Using local variable initialized from current rotation prevents snapping
+		var pitch = camera.rotation.x
+		pitch -= event.relative.y * sensitivity
+		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
+		camera.rotation.x = pitch
 
 func _physics_process(delta):
 	# Camera Tilt Logic
