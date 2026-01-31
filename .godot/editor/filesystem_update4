@@ -4,3 +4,6 @@ res://player.gd
 res://main.tscn
 res://world.gd
 res://hud.gd
+res://game_events.gd
+res://green_char.tscn
+res://blue_char.tscn

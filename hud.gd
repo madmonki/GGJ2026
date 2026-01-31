@@ -5,8 +5,10 @@ extends CanvasLayer
 @onready var game_over_ui = $GameOverUI
 @onready var retry_button = $GameOverUI/RetryButton
 
+const MAX_POSSESSION_TIME = 7.0
 const MAX_MASKLESS_TIME = 3.0
-var maskless_timer = MAX_MASKLESS_TIME
+var maskless_timer = MAX_POSSESSION_TIME # Init with possession time since we start masked
+var possession_timer = MAX_POSSESSION_TIME
 var is_game_over = false
 var last_character = null
 
@@ -31,24 +33,27 @@ func _process(delta):
 	
 	# Detect character switch and reset
 	if character != last_character:
-		maskless_timer = MAX_MASKLESS_TIME
 		last_character = character
 	
 	# Check if character is transitioning or dead logic handled here
 	if character.get("is_transitioning"): return
 	
-	var has_mask = false
-	if character.has_method("has_attached_mask"):
-		has_mask = character.has_attached_mask()
+	# Unified logic: Visualize current character's doom timer
+	# The timer logic is now handled in player.gd
+	var current_time = 0.0
+	var max_time = 7.0 # Default fallback
 	
-	if has_mask:
-		maskless_timer = MAX_MASKLESS_TIME
-	else:
-		maskless_timer -= delta
-		if maskless_timer <= 0:
-			_trigger_game_over(character)
+	if character.get("doom_timer") != null:
+		current_time = character.doom_timer
+		if character.get("doom_duration") != null:
+			max_time = character.doom_duration
 	
-	_update_ui(clamp(maskless_timer / MAX_MASKLESS_TIME, 0.0, 1.0))
+	if current_time <= 0 and not is_game_over:
+		_trigger_game_over(character)
+	
+	var pct = clamp(current_time / max_time, 0.0, 1.0)
+	
+	_update_ui(pct)
 
 func _update_ui(pct):
 	visible = pct < 1.0

@@ -26,6 +26,7 @@ func possess_transition(from_char: CharacterBody3D, to_char: CharacterBody3D, hi
 	# Stop new character from moving
 	to_char.is_transitioning = true
 	to_char.velocity = Vector3.ZERO
+	current_character = to_char
 	
 	# Target 90-degree turning logic
 	# If hit from the right side, person turns left 90 degrees.
@@ -63,7 +64,7 @@ func possess_transition(from_char: CharacterBody3D, to_char: CharacterBody3D, hi
 	var target_world_rotation = transition_camera.global_rotation
 	
 	to_char.possess()
-	current_character = to_char
+	to_char.possess()
 	to_char.is_transitioning = false
 	to_char.velocity = Vector3.ZERO
 	

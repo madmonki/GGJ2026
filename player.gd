@@ -26,7 +26,7 @@ var charge_timer = 0.0
 var is_charging = false
 var wander_direction = Vector3.ZERO
 var wander_timer = 0.0
-var has_mask = false
+var is_holding_mask = false
 var is_transitioning = false
 
 var can_dash = true
@@ -41,11 +41,17 @@ var is_dashing = false
 @onready var head_mesh = $HeadMesh
 
 
+@export var doom_duration = 7.0
+var doom_timer = 0.0
+var doom_active = false
+var is_dead = false
+
 func _ready():
 	add_to_group("characters")
+	doom_timer = doom_duration
 	
 	if starts_with_mask:
-		has_mask = false
+		is_holding_mask = false
 		_add_initial_mask()
 	
 	_apply_char_color()
@@ -54,6 +60,13 @@ func _ready():
 		possess()
 	else:
 		unpossess()
+
+func _process(delta):
+	# Doom timer logic
+	if doom_active and not is_dead:
+		doom_timer -= delta
+		if doom_timer <= 0:
+			die()
 
 func _apply_char_color():
 	var mat = StandardMaterial3D.new()
@@ -67,15 +80,17 @@ func _apply_char_color():
 
 func possess():
 	is_controlled = true
+	doom_active = true # Start the doom timer once possessed
+	doom_timer = doom_duration # Reset timer on possession
+	
 	GameEvents.current_character = self
 	camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# Reset movement state
 	velocity = Vector3.ZERO
 	if held_mask_visual:
-		held_mask_visual.visible = has_mask
+		held_mask_visual.visible = is_holding_mask
 	
-	# Set attached mask transparency if it exists
 	# Set attached mask transparency if it exists
 	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
@@ -89,7 +104,6 @@ func unpossess():
 	if held_mask_visual:
 		held_mask_visual.visible = false
 	
-	# Reset attached mask transparency
 	# Reset attached mask transparency
 	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
@@ -200,14 +214,14 @@ func _air_dash():
 		# print("Dash finished")
 
 func _handle_interaction(delta):
-	if has_mask:
+	if is_holding_mask:
 		_handle_throwing(delta)
 	else:
 		if Input.is_action_just_pressed("fire"):
 			if not _try_pickup_mask():
 				_detach_own_mask()
 				# Start charging immediately if we just detached
-				if has_mask:
+				if is_holding_mask:
 					_handle_throwing(delta)
 
 func _try_pickup_mask() -> bool:
@@ -216,7 +230,7 @@ func _try_pickup_mask() -> bool:
 		if collider.is_in_group("masks") and not collider.is_attached:
 			# Pickup goes to face now instead of hand
 			collider.attach_to(camera)
-			has_mask = false # Stays on face until detached
+			is_holding_mask = false # Stays on face until detached
 			if held_mask_visual:
 				held_mask_visual.visible = false
 			return true
@@ -245,7 +259,7 @@ func _detach_own_mask():
 	
 	if current_detaching_mask:
 		is_detaching_self = true
-		has_mask = true
+		is_holding_mask = true
 		charge_timer = 0.0
 		if Input.is_action_pressed("fire"):
 			is_charging = true
@@ -269,7 +283,7 @@ func _detach_own_mask():
 			current_detaching_mask = null
 		
 		# Only show visual if we haven't thrown it already
-		if has_mask and held_mask_visual:
+		if is_holding_mask and held_mask_visual:
 			_update_held_mask_color()
 			held_mask_visual.visible = true
 		is_detaching_self = false
@@ -326,14 +340,14 @@ func throw_mask():
 	var throw_dir = - camera.global_transform.basis.z
 	mask.apply_central_impulse(throw_dir * final_force)
 	
-	has_mask = false
+	is_holding_mask = false
 	if held_mask_visual:
 		held_mask_visual.visible = false
 		held_mask_visual.transform.origin = Vector3(0.3, -0.2, -0.5) # Reset position
 	charge_timer = 0.0
 
 func has_attached_mask() -> bool:
-	if has_mask: return true # Holding it counts as having it safely
+	if is_holding_mask: return true # Holding it counts as having it safely
 	
 	for child in camera.get_children():
 		if child.is_in_group("masks") and child.get("is_attached"):
@@ -341,7 +355,14 @@ func has_attached_mask() -> bool:
 	return false
 
 func die():
-	# Simple disable state, HUD manages the game over screen
+	# Simulate ragdoll by disabling control and tipping over
 	set_physics_process(false)
+	is_controlled = false
 	velocity = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Visual topple
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "rotation:z", deg_to_rad(90), 0.5)
