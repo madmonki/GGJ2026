@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://mnvukvm3wksi" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
-[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bcn6a6efta1n3" path="res://models/Rock_Vertical.fbx" id="12_dg77c"]
-[ext_resource type="PackedScene" uid="uid://iefte737dwwo" path="res://material/rock_small.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" path="res://material/rock_small.tscn" id="13_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -49,20 +49,17 @@ is_controlled = true
 is_stationary = false
 starts_with_mask = true
 dash_force = 10.0
-doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="RedChar" parent="." unique_id=693896521 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1435976, 0.13660674, -12.207928)
 is_stationary = true
 dash_force = 10.0
-doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="GreenChar" parent="." unique_id=412814436 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7808762, 1.6217132, 0.668411)
 is_stationary = false
-doom_duration = 5.0
 max_fov_change = 15.0
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=2142849049]

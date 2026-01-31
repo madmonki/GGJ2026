@@ -5,10 +5,7 @@ extends CanvasLayer
 @onready var game_over_ui = $GameOverUI
 @onready var retry_button = $GameOverUI/RetryButton
 
-const MAX_POSSESSION_TIME = 7.0
-const MAX_MASKLESS_TIME = 3.0
-var maskless_timer = MAX_POSSESSION_TIME # Init with possession time since we start masked
-var possession_timer = MAX_POSSESSION_TIME
+
 var is_game_over = false
 var last_character = null
 
@@ -50,7 +47,7 @@ func _process(_delta):
 	# Unified logic: Visualize current character's doom timer
 	# The timer logic is now handled in player.gd
 	var current_time = 0.0
-	var max_time = 7.0 # Default fallback
+	var max_time
 	
 	if character.get("doom_timer") != null:
 		current_time = character.doom_timer

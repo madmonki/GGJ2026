@@ -41,7 +41,7 @@ var is_dashing = false
 @onready var head_mesh = $HeadMesh
 
 
-@export var doom_duration = 15.0
+var doom_duration = 999
 var doom_timer = 0.0
 var doom_active = false
 var is_dead = false
