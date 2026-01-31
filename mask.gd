@@ -51,7 +51,12 @@ func attach_to(target):
 	if has_node("HitDetector/CollisionShape3D"):
 		$HitDetector/CollisionShape3D.set_deferred("disabled", true)
 	
-	call_deferred("reparent", target)
+	# Prefer attaching to Camera3D if available (for look direction and Player logic)
+	var parent_node = target
+	if target.has_node("Camera3D"):
+		parent_node = target.get_node("Camera3D")
+	
+	call_deferred("reparent", parent_node)
 	
 	# Position on face
 	call_deferred("_finalize_attachment")

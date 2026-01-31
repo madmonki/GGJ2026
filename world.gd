@@ -5,6 +5,7 @@ extends Node3D
 @onready var red_char_scene = preload("res://red_char.tscn")
 @onready var green_char_scene = preload("res://green_char.tscn")
 func _ready():
+	pass
 	# Clear any residual children (walls, characters, stray masks)
 	# Clear any residual children (walls, characters, stray masks)
 	# for child in get_children():

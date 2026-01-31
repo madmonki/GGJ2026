@@ -8,6 +8,7 @@ extends CanvasLayer
 const MAX_MASKLESS_TIME = 3.0
 var maskless_timer = MAX_MASKLESS_TIME
 var is_game_over = false
+var last_character = null
 
 func _ready():
 	if retry_button:
@@ -27,6 +28,11 @@ func _process(delta):
 	if not is_instance_valid(character):
 		_update_ui(1.0) # Show full bars if no character
 		return
+	
+	# Detect character switch and reset
+	if character != last_character:
+		maskless_timer = MAX_MASKLESS_TIME
+		last_character = character
 	
 	# Check if character is transitioning or dead logic handled here
 	if character.get("is_transitioning"): return
