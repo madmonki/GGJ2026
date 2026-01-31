@@ -162,8 +162,10 @@ func _physics_process(delta):
 		
 		# Decrease FOV based on speed (Zoom in effect)
 		# Max speed approx 25 (dash) -> Map to max_fov_change
-		var fov_offset = remap(speed_in_look_dir, 0, 20, 0, -max_fov_change)
-		fov_offset = clamp(fov_offset, -max_fov_change, 0)
+		speed_in_look_dir -= walk_speed
+		speed_in_look_dir = clamp(speed_in_look_dir, 0, speed_in_look_dir)
+		var fov_offset = remap(speed_in_look_dir, 0, 20, 0, max_fov_change)
+		fov_offset = clamp(fov_offset, 0, max_fov_change)
 		
 		# Add jitter if moving
 		if speed_in_look_dir > 1.0:

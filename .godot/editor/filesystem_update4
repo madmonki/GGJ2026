@@ -1,10 +1,11 @@
 res://red_char.tscn
+res://mask.gd
+res://player.gd
 res://main.tscn
 res://world.gd
 res://hud.gd
-res://mask.gd
-res://player.gd
-res://blue_char.tscn
 res://game_events.gd
 res://green_char.tscn
+res://blue_char.tscn
 res://player.tscn
+res://sm_ruins_01.tscn

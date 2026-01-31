@@ -27,6 +27,10 @@ func _apply_color(_color: Color):
 func _on_character_hit(body):
 	if not is_active or is_attached or not was_thrown:
 		return
+	
+	# Don't attach to dead characters
+	if body.get("is_dead"):
+		return
 		
 	if body.has_method("possess") and body != thrower:
 		attach_to(body)
@@ -36,10 +40,10 @@ func _on_body_entered(_body):
 	if not is_active or is_attached:
 		return
 	
-	# Only world hits here (ground/walls) since collision mask excludes characters
-	is_active = false
-	freeze = true
-	# Keep it there indefinitely
+	# Removed "stick to world" logic.
+	# Now we let the RigidBody physics handle the bounce.
+	# We do NOT set freeze = true here. 
+	pass
 
 func attach_to(target):
 	is_attached = true
