@@ -398,7 +398,7 @@ mesh = SubResource("ArrayMesh_su8dy")
 shape = SubResource("ConcavePolygonShape3D_t25bc")
 
 [node name="Gem" type="MeshInstance3D" parent="." unique_id=1398571693]
-transform = Transform3D(-0.147054, 0, -0.254705, 0, 0.294108, 0, 0.254705, 0, -0.147054, -2.476e-05, 0.008065689, 0)
+transform = Transform3D(-0.14705399, 0, -0.254705, 0, 0.29410797, 0, 0.254705, 0, -0.14705399, -2.4759998e-05, 0.013591463, 0)
 material_override = ExtResource("1_vv6gn")
 mesh = SubResource("ArrayMesh_6eyeo")
 
