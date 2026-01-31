@@ -2,9 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://1kpvaglrmd6q" path="res://blue_char.tscn" id="1_blue_char"]
 [ext_resource type="Script" uid="uid://dxaiyqfjiobf5" path="res://world.gd" id="1_world"]
+[ext_resource type="PackedScene" uid="uid://bkh5k84vbx7sb" path="res://models/SM_Ruins_01.fbx" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cavob6qsg8dkh" path="res://red_char.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://1eka23u3bhw5" path="res://models/temple.dae" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://cr81bhs0tmwni" path="res://models/rock.dae" id="8_kek77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -50,10 +53,14 @@ mesh = SubResource("BoxMesh_1")
 shape = SubResource("BoxShape3D_1")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor" unique_id=710248306]
+transform = Transform3D(18.233086, 0, 0, 0, 1, 0, 0, 0, 6.6740675, 0, 0, 0)
 mesh = SubResource("BoxMesh_1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor" unique_id=418385718]
 shape = SubResource("BoxShape3D_1")
+
+[node name="SM_Ruins_01" parent="Floor" unique_id=980471348 instance=ExtResource("3_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2322419, 0.053861853, -9.170496)
 
 [node name="Floor2" type="StaticBody3D" parent="." unique_id=57920872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -85,3 +92,9 @@ mesh = SubResource("BoxMesh_lquwl")
 transform = Transform3D(0.8697276, 0, -0.4935321, 0, 1, 0, 0.4935321, 0, 0.8697276, 0.2335118, 2.1383557, 0)
 operation = 1
 mesh = SubResource("BoxMesh_lquwl")
+
+[node name="temple" parent="." unique_id=1953874664 instance=ExtResource("7_5vw27")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -21.218948, 8.361186, 5.033148)
+
+[node name="rock" parent="." unique_id=1324380293 instance=ExtResource("8_kek77")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.527983, 0.14240527, -5.9422235)
