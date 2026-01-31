@@ -15,6 +15,15 @@ var last_character = null
 func _ready():
 	if retry_button:
 		retry_button.pressed.connect(_on_retry_pressed)
+	GameEvents.game_over.connect(_on_game_over_signal)
+
+func _on_game_over_signal():
+	is_game_over = true
+	if game_over_ui:
+		game_over_ui.visible = true
+	visible = true
+	if top_bar: top_bar.visible = false
+	if bottom_bar: bottom_bar.visible = false
 
 func _process(_delta):
 	if is_game_over: return

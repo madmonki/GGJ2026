@@ -3,10 +3,15 @@ extends Node
 var current_character: CharacterBody3D = null
 var transition_camera: Camera3D = null
 
+signal game_over
+
 func _ready():
 	transition_camera = Camera3D.new()
 	add_child(transition_camera)
 	transition_camera.current = false
+
+func trigger_game_over():
+	game_over.emit()
 
 func possess_transition(from_char: CharacterBody3D, to_char: CharacterBody3D, hit_offset: Vector3 = Vector3.ZERO):
 	if not from_char or not to_char:

@@ -394,15 +394,56 @@ func has_attached_mask() -> bool:
 			return true
 	return false
 
+@onready var corpse_scene = preload("res://corpse.tscn")
+
 func die():
-	# Simulate ragdoll by disabling control and tipping over
+	# 1. Disable player node (so we don't move/interact)
 	set_physics_process(false)
 	is_controlled = false
-	velocity = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	# Visual topple
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_BOUNCE)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "rotation:z", deg_to_rad(90), 0.5)
+	# 2. Spawn Corpse
+	var corpse = corpse_scene.instantiate()
+	get_parent().add_child(corpse)
+	corpse.global_transform = global_transform
+	
+	# 3. Apply Color to Corpse
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = char_color
+	mat.roughness = 0.8
+	if corpse.has_node("BodyMesh"):
+		corpse.get_node("BodyMesh").set_surface_override_material(0, mat)
+	if corpse.has_node("HeadMesh"):
+		corpse.get_node("HeadMesh").set_surface_override_material(0, mat)
+		
+	# 4. Transfer Camera to Corpse (so we see the fall)
+	# We reparent to the CameraMount node if it exists, otherwise the corpse root
+	var cam_parent = corpse
+	if corpse.has_node("CameraMount"):
+		cam_parent = corpse.get_node("CameraMount")
+		
+	# Reparent camera, keeping global transform so there's no jump
+	camera.reparent(cam_parent, true)
+	
+	# 5. Apply "Slight Kick" to initiate tipover
+	# If player was controlled, fail backwards (dramatic fall)
+	var was_controlled_local = is_controlled # Captured before we disabled it
+	if was_controlled_local:
+		GameEvents.trigger_game_over()
+		# Kick chest backwards to fall on back
+		# We use basis.z (forward) for kick direction to push FEET forward?
+		# No, apply_central_impulse pushes center. To fall on back, push center BACKWARDS (-z).
+		# Wait, if I push center backwards, they fly backwards. If I push feet forward, they tip back.
+		# Let's push center backwards strongly.
+		var kick_dir = - global_transform.basis.z + Vector3(randf_range(-0.2, 0.2), 0, randf_range(-0.2, 0.2))
+		corpse.apply_central_impulse(kick_dir * 8.0)
+		# Add back-flip torque
+		corpse.apply_torque_impulse(global_transform.basis.x * -10.0)
+	else:
+		# Random logic for NPCs
+		var kick_dir = - global_transform.basis.z + Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
+		corpse.apply_central_impulse(kick_dir.normalized() * 5.0)
+		corpse.apply_torque_impulse(Vector3(randf(), 0, randf()) * 2.0)
+	
+	# 6. Remove original player
+	queue_free()
