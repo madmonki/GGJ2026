@@ -122,6 +122,14 @@ func _add_initial_mask():
 	camera.add_child(mask)
 	mask.attach_to(camera)
 
+@export var cam_tilt_amount = 0.05 # Max tilt strength
+@export var cam_tilt_speed = 5.0 # How fast it tilts/recovers
+var mouse_input_x = 0.0
+
+@export var base_fov = 75.0
+@export var max_fov_change = 15.0 # How much it can zoom in/out
+@export var fov_jitter_strength = 0.2 # How "jumpy" the FOV is
+
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
@@ -132,11 +140,41 @@ func _unhandled_input(event):
 	if not is_controlled: return
 	
 	if event is InputEventMouseMotion:
+		mouse_input_x = event.relative.x
 		rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _physics_process(delta):
+	# Camera Tilt Logic
+	if is_controlled:
+		# Target tilt based on mouse X input (banking)
+		var target_tilt = - mouse_input_x * cam_tilt_amount
+		target_tilt = clamp(target_tilt, -0.1, 0.1)
+		camera.rotation.z = lerp(camera.rotation.z, target_tilt, delta * cam_tilt_speed)
+		mouse_input_x = lerp(mouse_input_x, 0.0, delta * 10.0)
+		
+		# Dynamic Jumpy FOV Logic
+		# Calculate speed along look direction
+		var look_dir = - camera.global_transform.basis.z
+		var speed_in_look_dir = velocity.dot(look_dir)
+		speed_in_look_dir = max(0.0, speed_in_look_dir) # Only forward movement counts
+		
+		# Decrease FOV based on speed (Zoom in effect)
+		# Max speed approx 25 (dash) -> Map to max_fov_change
+		var fov_offset = remap(speed_in_look_dir, 0, 20, 0, -max_fov_change)
+		fov_offset = clamp(fov_offset, -max_fov_change, 0)
+		
+		# Add jitter if moving
+		if speed_in_look_dir > 1.0:
+			fov_offset += randf_range(-fov_jitter_strength, fov_jitter_strength)
+			
+		camera.fov = lerp(camera.fov, base_fov + fov_offset, delta * 5.0)
+		
+	else:
+		camera.rotation.z = lerp(camera.rotation.z, 0.0, delta * 5.0)
+		camera.fov = lerp(camera.fov, base_fov, delta * 5.0)
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 

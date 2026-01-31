@@ -7,3 +7,4 @@ res://hud.gd
 res://game_events.gd
 res://green_char.tscn
 res://blue_char.tscn
+res://player.tscn

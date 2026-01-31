@@ -16,7 +16,7 @@ func _ready():
 	if retry_button:
 		retry_button.pressed.connect(_on_retry_pressed)
 
-func _process(delta):
+func _process(_delta):
 	if is_game_over: return
 	
 	var character = GameEvents.current_character
