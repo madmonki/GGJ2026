@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b0dur0dawx1uu"]
 
+[ext_resource type="Material" uid="uid://i66ln44uxhhq" path="res://material/01basic.tres" id="1_731pp"]
 [ext_resource type="Texture2D" uid="uid://dekn6qurqfg4v" path="res://models/RuinTample_0.png" id="1_iap4e"]
 [ext_resource type="Texture2D" uid="uid://duj4et8i1pn7k" path="res://models/RuinTample_1.png" id="2_731pp"]
 [ext_resource type="Texture2D" uid="uid://cdux333o51lq6" path="res://models/RuinTample_2.png" id="3_m1tpj"]
@@ -344,6 +345,7 @@ data = PackedVector3Array(2.9796, -1.0675, 3.3969998, 3.1957, -0.978, 3.3969998,
 
 [node name="Box01_0" type="MeshInstance3D" parent="." unique_id=2017744733]
 transform = Transform3D(0.8, 0, 0, 0, 0, 0.8, 0, -0.8, 0, 0, 0, 0)
+material_override = ExtResource("1_731pp")
 mesh = SubResource("ArrayMesh_3b2bs")
 skin = SubResource("Skin_ai13j")
 
