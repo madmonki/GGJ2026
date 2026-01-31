@@ -1,19 +1,19 @@
-[gd_scene format=3 uid="uid://26pkpiwl21he"]
+[gd_scene format=3 uid="uid://wfv704aiq7vn"]
 
 [ext_resource type="PackedScene" uid="uid://1kpvaglrmd6q" path="res://blue_char.tscn" id="1_blue_char"]
 [ext_resource type="Script" uid="uid://dxaiyqfjiobf5" path="res://world.gd" id="1_world"]
 [ext_resource type="PackedScene" uid="uid://cavob6qsg8dkh" path="res://red_char.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
 [ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://dhe01ao1x0kkl" path="res://material/ruin.tscn" id="8_4c57u"]
-[ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
-[ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
-[ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
-[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://dyaj8oftvgpev" path="res://material/rock_vertical.tscn" id="12_dg77c"]
-[ext_resource type="PackedScene" uid="uid://crxambkx2cwmk" path="res://material/rock_small.tscn" id="13_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://la6uxll6rm54" path="res://material/bridge.tscn" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://bapf7cln2nsya" path="res://material/ruin.tscn" id="8_4c57u"]
+[ext_resource type="PackedScene" path="res://material/ruin_tample.tscn" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://ileyet6te5ot" path="res://sm_ruins_01.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" path="res://material/rock.tscn" id="10_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bjmarjgbuq2bn" path="res://material/temple.tscn" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bq0jko7jowl7q" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://c4ierwjsu67ao" path="res://material/rock_vertical.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://c8nj6e4uc002l" path="res://material/rock_small.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://bff5c3tkh0hhp" path="res://material/bridge.tscn" id="14_w48qg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.26735166, 0.48610437, 0.5399706, 1)
@@ -481,7 +481,7 @@ transform = Transform3D(-0.3211999, 0, 0.3831848, 0, 0.5, 0, -0.3831848, 0, -0.3
 transform = Transform3D(0.4985689, 0, 0.03780265, 0, 0.5, 0, -0.03780265, 0, 0.4985689, 48.294395, -2.7518435, -59.829666)
 
 [node name="Rock_Horizontal8" parent="." unique_id=51907965 instance=ExtResource("11_efxa6")]
-transform = Transform3D(0.39885515, 0, 0.030242125, 0, 0.4, 0, -0.030242125, 0, 0.39885515, 32.167797, -12.84324, -26.278286)
+transform = Transform3D(0.39857432, 0, 0.03374247, 0, 0.40000007, 0, -0.03374247, 0, 0.39857432, 32.167797, -12.84324, -26.278286)
 
 [node name="Rock_Horizontal16" parent="." unique_id=118533195 instance=ExtResource("11_efxa6")]
 transform = Transform3D(0.39885515, 0, 0.030242125, 0, 0.4, 0, -0.030242125, 0, 0.39885515, -5.2051044, -1.6592431, -69.839645)
