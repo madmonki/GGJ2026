@@ -112,9 +112,6 @@ transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -1.9339428, -1.21107
 [node name="RuinTample" parent="." unique_id=1105016889 instance=ExtResource("9_efxa6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 38.889378, -10.800892, -24.718094)
 
-[node name="RuinTample2" parent="." unique_id=1778535202 instance=ExtResource("9_efxa6")]
-transform = Transform3D(0, 0, 1.9999999, 0, 2, 0, -1.9999999, 0, 0, -7.292309, 0.5236428, -56.200584)
-
 [node name="rock" parent="." unique_id=1324380293 instance=ExtResource("10_dg77c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805479, 0.8823807, 14.269089)
 
