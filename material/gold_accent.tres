@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://gold_accent_material"]
+
+[resource]
+resource_name = "GoldAccent"
+albedo_color = Color(1, 0.84, 0, 1)
+metallic = 1.0
+roughness = 0.15
+emission_enabled = true
+emission = Color(0.2, 0.15, 0, 1)
+emission_energy_multiplier = 1.0
