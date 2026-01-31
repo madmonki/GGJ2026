@@ -1,0 +1,9 @@
+res://player.gd
+res://player.tscn
+res://mask.gd
+res://world.gd
+res://blue_char.tscn
+res://colorless_char.tscn
+res://green_char.tscn
+res://red_char.tscn
+res://game_events.gd

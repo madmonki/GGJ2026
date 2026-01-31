@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cavob6qsg8dkh"]
+
+[ext_resource type="PackedScene" uid="uid://lpnydhxpayae" path="res://player.tscn" id="1_player"]
+
+[node name="RedChar" unique_id=693896521 instance=ExtResource("1_player")]
+char_color = Color(0.9, 0.6, 0.6, 1)
+

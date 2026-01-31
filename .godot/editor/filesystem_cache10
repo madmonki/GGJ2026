@@ -1,0 +1,10 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1769855744
+game_events.gd::GDScript::7579083230690350979::1769855950::0::1::::<>Node<><>0<>0<><>::
+main.tscn::PackedScene::1960023902657331362::1769855838::0::1::::<><><>0<>0<><>::res://world.gd<>res://player.tscn
+mask.gd::GDScript::327212844843875810::1769856595::0::1::::<>RigidBody3D<><>0<>0<><>::
+mask.tscn::PackedScene::-1::1769855501::0::1::::<><><>0<>0<><>::res://mask.gd
+player.gd::GDScript::4731964475157370843::1769856597::0::1::::<>CharacterBody3D<><>0<>0<><>::
+player.tscn::PackedScene::803875295737703284::1769855744::0::1::::<><><>0<>0<><>::uid://b8og07w37hj84::::res://player.gd
+rotating_cube.gd::GDScript::7430694068892738605::1769796778::0::1::::<>MeshInstance3D<><>0<>0<><>::
+world.gd::GDScript::8774134898267682716::1769855847::0::1::::<>Node3D<><>0<>0<><>::

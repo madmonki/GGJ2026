@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://26pkpiwl21he"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://blue_char.tscn" id="1_blue_char"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="4_hud"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.646275, 0.655686, 0.670588, 1)
+ground_horizon_color = Color(0.646275, 0.655686, 0.670588, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+size = Vector3(0.1, 4, 20)
+
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(0.1, 4, 20)
+
+[sub_resource type="BoxMesh" id="CapMesh"]
+size = Vector3(5, 4, 0.1)
+
+[sub_resource type="BoxShape3D" id="CapShape"]
+size = Vector3(5, 4, 0.1)
+
+[node name="World" type="Node3D" unique_id=1721197352]
+script = ExtResource("1_world")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1522766891]
+environment = SubResource("Environment_1")
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1941903374]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1554686591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=647803905]
+mesh = SubResource("BoxMesh_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=549438056]
+shape = SubResource("BoxShape3D_1")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1554686591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=647803905]
+mesh = SubResource("BoxMesh_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=549438056]
+shape = SubResource("BoxShape3D_1")
+
+[node name="Player" parent="." unique_id=1302333533 instance=ExtResource("1_blue_char")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 8.5)
+is_controlled = true
+starts_with_mask = true

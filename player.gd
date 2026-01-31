@@ -1,0 +1,345 @@
+extends CharacterBody3D
+class_name Player
+
+@export var walk_speed = 5.0
+@export var sprint_speed = 9.0
+@export var jump_velocity = 9.0
+@export var sensitivity = 0.003
+@export var max_charge_time = 2.0
+@export var min_throw_force = 5.0
+@export var max_throw_force = 25.0
+@export var is_controlled = false
+@export var is_stationary = false
+
+@export_group("Class Traits")
+@export var char_color: Color = Color.WHITE
+@export var can_sprint: bool = true
+@export var can_ever_dash: bool = false
+@export var starts_with_mask: bool = false
+
+@onready var camera = $Camera3D
+@onready var throw_point = $Camera3D/ThrowPoint
+@onready var mask_scene = preload("res://mask.tscn")
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var charge_timer = 0.0
+var is_charging = false
+var wander_direction = Vector3.ZERO
+var wander_timer = 0.0
+var has_mask = false
+var is_transitioning = false
+
+var can_dash = true
+var is_dashing = false
+
+@export var dash_force = 10.0
+@export var dash_duration = 0.15
+
+@onready var interaction_ray = $Camera3D/InteractionRay
+@onready var held_mask_visual = $Camera3D/HeldMaskVisual
+@onready var body_mesh = $BodyMesh
+@onready var head_mesh = $HeadMesh
+
+
+func _ready():
+	add_to_group("characters")
+	
+	if starts_with_mask:
+		has_mask = false
+		_add_initial_mask()
+	
+	_apply_char_color()
+	
+	if is_controlled:
+		possess()
+	else:
+		unpossess()
+
+func _apply_char_color():
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = char_color
+	mat.roughness = 0.8
+	
+	if body_mesh:
+		body_mesh.set_surface_override_material(0, mat)
+	if head_mesh:
+		head_mesh.set_surface_override_material(0, mat)
+
+func possess():
+	is_controlled = true
+	GameEvents.current_character = self
+	camera.make_current()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Reset movement state
+	velocity = Vector3.ZERO
+	if held_mask_visual:
+		held_mask_visual.visible = has_mask
+	
+	# Set attached mask transparency if it exists
+	for child in get_children():
+		if child.is_in_group("masks") and child.has_method("set_transparency"):
+			child.set_transparency(0.8) # 80% transparent to not block view
+
+func unpossess():
+	is_controlled = false
+	is_charging = false
+	is_dashing = false
+	charge_timer = 0.0
+	if held_mask_visual:
+		held_mask_visual.visible = false
+	
+	# Reset attached mask transparency
+	for child in get_children():
+		if child.is_in_group("masks") and child.has_method("set_transparency"):
+			child.set_transparency(0.0)
+			
+	# Start wandering
+	_update_wander_direction()
+
+func _update_wander_direction():
+	var angle = randf_range(0, TAU)
+	wander_direction = Vector3(cos(angle), 0, sin(angle))
+	wander_timer = randf_range(2.0, 5.0)
+
+func _add_initial_mask():
+	var mask = mask_scene.instantiate()
+	add_child(mask)
+	mask.attach_to(self)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	
+	if event.is_action_pressed("reset"):
+		get_tree().reload_current_scene()
+	
+	if not is_controlled: return
+	
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	if is_transitioning:
+		velocity.x = 0
+		velocity.z = 0
+	elif is_controlled:
+		if is_on_floor():
+			can_dash = true
+		_handle_controlled_movement(delta)
+		_handle_interaction(delta)
+	elif not is_stationary:
+		_handle_wandering(delta)
+
+	move_and_slide()
+
+func _handle_controlled_movement(delta):
+	if is_dashing: return
+	
+	var is_sprinting = Input.is_action_pressed("sprint") and can_sprint
+	var current_speed = sprint_speed if is_sprinting else walk_speed
+	
+	if is_on_floor():
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = jump_velocity
+	else:
+		if Input.is_action_just_pressed("jump") and can_dash and can_ever_dash:
+			_air_dash()
+
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	# Handle horizontal movement with "floating" support for high velocities (after dash)
+	var target_vel = direction * current_speed
+	var h_vel = Vector2(velocity.x, velocity.z)
+	var target_h = Vector2(target_vel.x, target_vel.z)
+	
+	if direction:
+		if h_vel.length() <= current_speed:
+			# Normal snappy movement
+			velocity.x = target_vel.x
+			velocity.z = target_vel.z
+		else:
+			# Decelerate gradually back to normal speed (the "float" after dash)
+			var new_h = h_vel.move_toward(target_h, delta * 20.0)
+			velocity.x = new_h.x
+			velocity.z = new_h.y
+	else:
+		# Fast deceleration when no input
+		var new_h = h_vel.move_toward(Vector2.ZERO, delta * 30.0)
+		velocity.x = new_h.x
+		velocity.z = new_h.y
+
+func _air_dash():
+	if is_dashing: return
+	can_dash = false
+	is_dashing = true
+	
+	# Dash exactly where the camera is looking (includes pitch)
+	var dash_dir = - camera.global_transform.basis.z.normalized()
+	
+	# Scale down if looking up. 1.0 (straight up) -> jump_velocity, 0.0 (horizontal) -> dash_force
+	var current_dash_speed = dash_force
+	if dash_dir.y > 0:
+		current_dash_speed = lerp(dash_force, jump_velocity, dash_dir.y)
+	
+	# Set absolute velocity for constant dash distance
+	velocity = dash_dir * current_dash_speed
+	
+	var timer = get_tree().create_timer(dash_duration)
+	await timer.timeout
+	
+	if is_instance_valid(self):
+		is_dashing = false
+		# print("Dash finished")
+
+func _handle_interaction(delta):
+	if has_mask:
+		_handle_throwing(delta)
+	else:
+		if Input.is_action_just_pressed("fire"):
+			if not _try_pickup_mask():
+				_detach_own_mask()
+				# Start charging immediately if we just detached
+				if has_mask:
+					_handle_throwing(delta)
+
+func _try_pickup_mask() -> bool:
+	if interaction_ray.is_colliding():
+		var collider = interaction_ray.get_collider()
+		if collider.is_in_group("masks") and not collider.is_attached:
+			# Pickup goes to face now instead of hand
+			collider.attach_to(self)
+			has_mask = false # Stays on face until detached
+			if held_mask_visual:
+				held_mask_visual.visible = false
+			return true
+	return false
+
+func _update_held_mask_color():
+	if held_mask_visual:
+		var material = StandardMaterial3D.new()
+		# Match the neutral mask look
+		material.albedo_color = Color(0.9, 0.9, 0.9)
+		material.emission_enabled = false
+		# Unique instance for held visual
+		held_mask_visual.set_surface_override_material(0, material)
+
+var is_detaching_self = false
+var current_detaching_mask: Node3D = null
+
+func _detach_own_mask():
+	if is_transitioning or is_detaching_self: return
+	
+	current_detaching_mask = null
+	for child in get_children():
+		if child.is_in_group("masks") and child.has_method("set_transparency"):
+			current_detaching_mask = child
+			break
+	
+	if current_detaching_mask:
+		is_detaching_self = true
+		has_mask = true
+		charge_timer = 0.0
+		if Input.is_action_pressed("fire"):
+			is_charging = true
+		
+		# Reparent to camera for easier lerping in view space
+		current_detaching_mask.reparent(camera)
+		
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.set_ease(Tween.EASE_OUT)
+		
+		# Lerp from face (0,0,-0.4) to hand position - faster 0.15s
+		var hand_pos = Vector3(0.3, -0.2, -0.5)
+		tween.tween_property(current_detaching_mask, "transform:origin", hand_pos, 0.15)
+		tween.tween_property(current_detaching_mask, "scale", Vector3.ONE * 0.5, 0.15)
+		
+		await tween.finished
+		
+		if is_instance_valid(current_detaching_mask):
+			current_detaching_mask.queue_free()
+			current_detaching_mask = null
+		
+		# Only show visual if we haven't thrown it already
+		if has_mask and held_mask_visual:
+			_update_held_mask_color()
+			held_mask_visual.visible = true
+		is_detaching_self = false
+
+func _handle_throwing(delta):
+	if Input.is_action_just_pressed("fire"):
+		is_charging = true
+		charge_timer = 0.0
+	
+	if is_charging:
+		charge_timer += delta
+		# Pull back visual slightly as we charge
+		var charge_pct = clamp(charge_timer / max_charge_time, 0.0, 1.0)
+		if held_mask_visual:
+			# Base hand_pos: Vector3(0.3, -0.2, -0.5)
+			# Move back by 0.2m at max charge
+			held_mask_visual.transform.origin = Vector3(0.3, -0.2, -0.5 + (charge_pct * 0.2))
+		
+		if charge_timer >= max_charge_time:
+			throw_mask()
+	
+	if Input.is_action_just_released("fire") and is_charging:
+		throw_mask()
+
+func _handle_wandering(delta):
+	wander_timer -= delta
+	if wander_timer <= 0:
+		_update_wander_direction()
+	
+	velocity.x = wander_direction.x * walk_speed * 0.5
+	velocity.z = wander_direction.z * walk_speed * 0.5
+	
+	if velocity.length() > 0.1:
+		var target_rotation = atan2(velocity.x, velocity.z)
+		rotation.y = lerp_angle(rotation.y, target_rotation, delta * 5.0)
+
+func throw_mask():
+	is_charging = false
+	
+	# If we are mid-detachment, cleanup the animated mask immediately
+	if is_detaching_self and is_instance_valid(current_detaching_mask):
+		current_detaching_mask.queue_free()
+		current_detaching_mask = null
+	
+	var force_pct = clamp(charge_timer / max_charge_time, 0.0, 1.0)
+	var final_force = lerp(min_throw_force, max_throw_force, force_pct)
+	
+	var mask = mask_scene.instantiate()
+	get_parent().add_child(mask)
+	mask.global_transform = throw_point.global_transform
+	mask.thrower = self # Tell the mask who threw it
+	mask.was_thrown = true
+	
+	var throw_dir = - camera.global_transform.basis.z
+	mask.apply_central_impulse(throw_dir * final_force)
+	
+	has_mask = false
+	if held_mask_visual:
+		held_mask_visual.visible = false
+		held_mask_visual.transform.origin = Vector3(0.3, -0.2, -0.5) # Reset position
+	charge_timer = 0.0
+
+func has_attached_mask() -> bool:
+	if has_mask: return true # Holding it counts as having it safely
+	
+	for child in get_children():
+		if child.is_in_group("masks") and child.get("is_attached"):
+			return true
+	return false
+
+func die():
+	# Simple disable state, HUD manages the game over screen
+	set_physics_process(false)
+	velocity = Vector3.ZERO
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

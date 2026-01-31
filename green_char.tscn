@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dobarm8615hkm"]
+
+[ext_resource type="PackedScene" uid="uid://lpnydhxpayae" path="res://player.tscn" id="1_player"]
+
+[node name="GreenChar" unique_id=412814436 instance=ExtResource("1_player")]
+jump_velocity = 6.0
+char_color = Color(0.6, 0.9, 0.6, 1)
+can_sprint = false
+can_ever_dash = true
+dash_force = 30.0
