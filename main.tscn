@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://sm_ruins_01.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cmxf144qtdgy0" path="res://material/rock.tscn" id="10_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b3bfrtrvjjnvw" path="res://material/temple.tscn" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://gjyjjlwkyul2" path="res://material/rock_horizontal.tscn" id="11_efxa6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -24,9 +25,6 @@ background_mode = 2
 sky = SubResource("Sky_1")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_1"]
-size = Vector3(20, 0.1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 size = Vector3(78.88818, 0.1, 20.518677)
@@ -47,10 +45,6 @@ shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=1554686591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor" unique_id=710248306]
-transform = Transform3D(18.233086, 0, 0, 0, 1, 0, 0, 0, 6.6740675, -0.12254238, 0.07577276, 0.075489044)
-mesh = SubResource("BoxMesh_1")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor" unique_id=418385718]
 transform = Transform3D(4.621189, 0, 0, 0, 1, 0, 0, 0, 6.3480806, -0.7367325, 0, 1.6463009)
@@ -102,7 +96,10 @@ transform = Transform3D(0.82948625, 0, 0.5585271, 0, 1, 0, -0.5585271, 0, 0.8294
 transform = Transform3D(0.25333595, 0, 0.9673785, 0, 1, 0, -0.9673785, 0, 0.25333595, -17.541624, -9.536743e-07, 2.8873162)
 
 [node name="SM_Ruins_03" parent="." unique_id=439970685 instance=ExtResource("10_4c57u")]
-transform = Transform3D(-0.438528, 0, 0.8987176, 0, 1, 0, -0.8987176, 0, -0.438528, -20.235493, -9.536743e-07, 16.520048)
+transform = Transform3D(-0.64253354, 0, 0.76625764, 0, 1, 0, -0.76625764, 0, -0.64253354, -14.295109, -9.536743e-07, 16.396427)
+
+[node name="SM_Ruins_04" parent="." unique_id=120369525 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.9934846, 0, 0.11396626, 0, 1, 0, -0.11396626, 0, -0.9934846, -1.8564749, 9.536743e-07, 23.334177)
 
 [node name="temple" parent="." unique_id=1640253865 instance=ExtResource("10_efxa6")]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -40.42626, 8.33707, -15.185236)
@@ -118,3 +115,15 @@ transform = Transform3D(0, 0, 1.9999999, 0, 2, 0, -1.9999999, 0, 0, -7.292309, 0
 
 [node name="rock" parent="." unique_id=1324380293 instance=ExtResource("10_dg77c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805479, 0.8823807, 14.269089)
+
+[node name="Rock_Horizontal" parent="." unique_id=264785939 instance=ExtResource("11_efxa6")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.0359478, -4.1126957, 16.014816)
+
+[node name="Rock_Horizontal2" parent="." unique_id=1906637494 instance=ExtResource("11_efxa6")]
+transform = Transform3D(0.39999998, 0, -0.69282037, 0, 0.8, 0, 0.69282037, 0, 0.39999998, 5.7118015, -4.1126957, 7.639676)
+
+[node name="Rock_Horizontal3" parent="." unique_id=1398305345 instance=ExtResource("11_efxa6")]
+transform = Transform3D(0.7729822, 0, -0.20615155, 0, 0.79999995, 0, 0.20615155, 0, 0.7729822, -0.49933815, -4.1126957, -3.3109665)
+
+[node name="Rock_Horizontal4" parent="." unique_id=486835849 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-0.6932875, 0, 0.39918965, 0, 0.79999995, 0, -0.39918965, 0, -0.6932875, -12.784086, -4.1126947, 10.416114)
