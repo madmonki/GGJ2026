@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://wbpb70o7reaf"]
 
-[ext_resource type="Script" path="res://src/scripts/entities/player.gd" id="1_g80e3"]
-[ext_resource type="PackedScene" path="res://assets/models/Breathing Idle.fbx" id="2_vndsf"]
-[ext_resource type="PackedScene" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
+[ext_resource type="Script" uid="uid://b8og07w37hj84" path="res://src/scripts/entities/player.gd" id="1_g80e3"]
+[ext_resource type="PackedScene" uid="uid://b28u7gr353roa" path="res://assets/models/Breathing Idle.fbx" id="2_vndsf"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 
@@ -874,7 +874,7 @@ sprint_speed = 12.0
 jump_velocity = 6.0
 is_stationary = true
 char_color = Color(0.6, 0.7, 0.9, 1)
-dash_force = 100.0
+dash_force = 125.0
 max_fov_change = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=529467504]
