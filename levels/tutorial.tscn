@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://dxaiyqfjiobf5" path="res://src/scripts/core/world.gd" id="1_world"]
 [ext_resource type="PackedScene" uid="uid://cfp5ky061xcox" path="res://src/scenes/characters/green_char.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://ts2y1pwrwbb0" path="res://src/scenes/characters/blue_char.tscn" id="3_blue"]
+[ext_resource type="Material" uid="uid://g46byd87litb" path="res://assets/materials/white_matte.tres" id="3_gdrka"]
 [ext_resource type="PackedScene" uid="uid://dlnsyh7ba0oj7" path="res://src/scenes/characters/red_char.tscn" id="4_red"]
 [ext_resource type="PackedScene" uid="uid://df6s8f7g8iaj1" path="res://src/scenes/props/victory_box.tscn" id="5_win"]
 [ext_resource type="PackedScene" uid="uid://wbpb70o7reaf" path="res://blue_char.tscn" id="6_aaho8"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://src/scenes/ui/hud.tscn" id="6_hud"]
+[ext_resource type="Material" uid="uid://bcf36tmiv4aex" path="res://assets/materials/gold_accent.tres" id="9_vvqp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.26735166, 0.48610437, 0.5399706, 1)
@@ -41,6 +43,8 @@ points = PackedVector3Array(50, 0.5, 100, 50, -0.5, 100, 50, 0.5, -100, -50, 0.5
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c633x"]
 data = PackedVector3Array(-5, -0.5, 5, -5, -0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, -0.5, -5, -5, -0.5, 5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, 5, -5, 0.5, 5, 5, 0.5, 5, 5, 0.5, 5, -5, 0.5, 5, -5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, 5, -0.5, -5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, -0.5, -5, 5, -0.5, 5, 5, 0.5, 5, 5, -0.5, -5, 5, 0.5, -5, -5, 0.5, -5, -5, 0.5, -5, 5, 0.5, -5, 5, 0.5, 5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, -5)
 
+[sub_resource type="PrismMesh" id="PrismMesh_bp3yb"]
+
 [node name="World" type="Node3D" unique_id=1721197352]
 script = ExtResource("1_world")
 
@@ -55,6 +59,7 @@ shadow_enabled = true
 
 [node name="SafetyFloor#MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1297536615]
 transform = Transform3D(-0.16887987, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.15155)
+material_override = ExtResource("3_gdrka")
 mesh = SubResource("BoxMesh_Floor")
 surface_material_override/0 = SubResource("Mat_Floor")
 
@@ -65,6 +70,7 @@ shape = SubResource("ConvexPolygonShape3D_0fvvq")
 
 [node name="SafetyFloor#MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=965986128]
 transform = Transform3D(-0.17299512, 0, 0, 0, 1, 0, 0, 0, 0.1801349, 0, 0, -66.57491)
+material_override = ExtResource("3_gdrka")
 mesh = SubResource("BoxMesh_Floor")
 surface_material_override/0 = SubResource("Mat_Floor")
 
@@ -75,6 +81,7 @@ shape = SubResource("ConvexPolygonShape3D_0fvvq")
 
 [node name="Floor_Top" type="CSGBox3D" parent="." unique_id=1779505212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.025821, -72.27096)
+material_override = ExtResource("3_gdrka")
 use_collision = true
 size = Vector3(10, 1, 10)
 material = SubResource("Mat_Floor")
@@ -86,6 +93,7 @@ shape = SubResource("ConcavePolygonShape3D_c633x")
 
 [node name="Floor_Top2" type="CSGBox3D" parent="." unique_id=1757928561]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.22685, -88.838104)
+material_override = ExtResource("3_gdrka")
 use_collision = true
 size = Vector3(10, 1, 10)
 material = SubResource("Mat_Floor")
@@ -123,7 +131,7 @@ outline_size = 24
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -62)
 modulate = Color(1, 0.2, 0.2, 1)
 text = "RED HOST = HIGH JUMP
-Reach the exit!"
+Space to jump higher."
 font_size = 112
 outline_size = 24
 
@@ -159,3 +167,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68169785, 11.749243, -92.22
 
 [node name="BlueChar2" parent="." unique_id=263447481 instance=ExtResource("6_aaho8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1973238, 12.561994, -84.42097)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=18957364]
+transform = Transform3D(1, 0, 0, 0, -0.19096322, 0.9815972, 0, -0.9815972, -0.19096322, -2.0524523, 0.8729948, 0.27688977)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1705764717]
+transform = Transform3D(0.7769262, -0.62959164, 0, -2.7520326e-08, -3.3960525e-08, 1, -0.62959164, -0.7769262, -4.371139e-08, 4.4954586, 0.8729948, -6.877084)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1048027810]
+transform = Transform3D(0.97839725, 0.20673361, 0, 9.036611e-09, -4.2767102e-08, 1, 0.20673361, -0.97839725, -4.371139e-08, -3.4333334, 0.8729938, -25.947876)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1224707239]
+transform = Transform3D(0.98015374, -0.19823898, 0, -8.665304e-09, -4.2843876e-08, 1, -0.19823898, -0.98015374, -4.371139e-08, 5.2455044, 0.8729938, -35.681267)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=154718179]
+transform = Transform3D(0.98015374, -0.19823898, 0, -8.665304e-09, -4.2843876e-08, 1, -0.19823898, -0.98015374, -4.371139e-08, 6.1507854, 0.8729938, -52.94494)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1346139270]
+transform = Transform3D(0.98015374, -0.19823898, 0, -8.665304e-09, -4.2843876e-08, 1, -0.19823898, -0.98015374, -4.371139e-08, 3.7722123, 5.663798, -69.6484)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=1979239673]
+transform = Transform3D(0.9351167, 0.35434005, 0, 1.5488693e-08, -4.0875243e-08, 1, 0.35434005, -0.9351167, -4.371139e-08, -1.6299055, 5.723877, -73.01442)
+material_override = ExtResource("9_vvqp3")
+mesh = SubResource("PrismMesh_bp3yb")
