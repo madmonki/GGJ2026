@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://wfv704aiq7vn"]
 
-[ext_resource type="PackedScene" uid="uid://1kpvaglrmd6q" path="res://blue_char.tscn" id="1_blue_char"]
+[ext_resource type="PackedScene" uid="uid://ts2y1pwrwbb0" path="res://blue_char.tscn" id="1_blue_char"]
 [ext_resource type="Script" uid="uid://dxaiyqfjiobf5" path="res://world.gd" id="1_world"]
-[ext_resource type="PackedScene" uid="uid://cavob6qsg8dkh" path="res://red_char.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dlnsyh7ba0oj7" path="res://red_char.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hudscene1234" path="res://hud.tscn" id="4_hud"]
-[ext_resource type="PackedScene" uid="uid://dobarm8615hkm" path="res://green_char.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cfp5ky061xcox" path="res://green_char.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bapf7cln2nsya" path="res://material/ruin.tscn" id="8_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b0dur0dawx1uu" path="res://material/ruin_tample.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://ileyet6te5ot" path="res://sm_ruins_01.tscn" id="10_4c57u"]

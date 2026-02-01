@@ -1262,11 +1262,12 @@ mesh = SubResource("ArrayMesh_gx3nm")
 skin = SubResource("Skin_8ppmv")
 skeleton = NodePath("..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterModel" unique_id=2026765399]
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="CharacterModel" unique_id=2026765399]
 libraries/ = SubResource("AnimationLibrary_8npyw")
 libraries/motion = SubResource("AnimationLibrary_sweqy")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=2140180384]
+active = true
 tree_root = SubResource("AnimationNodeBlendSpace1D_3ro0c")
-anim_player = NodePath("../CharacterModel/AnimationPlayer")
+anim_player = NodePath("../CharacterModel/MainAnimationPlayer")
 parameters/blend_position = 0.0
