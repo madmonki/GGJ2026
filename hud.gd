@@ -64,15 +64,27 @@ func _process(_delta):
 func _update_ui(pct):
 	visible = pct < 1.0
 	
+	var is_critical = pct <= 0.3 and pct > 0.0
+	var pulse = 0.0
+	var bar_color = Color.WHITE
+	var bar_height = 20.0
+	
+	if is_critical:
+		# Pulsate at 10Hz
+		pulse = (sin(Time.get_ticks_msec() * 0.01) + 1.0) / 2.0
+		bar_color = Color.WHITE.lerp(Color.RED, pulse)
+		# Widen from 20px to 40px
+		bar_height = 20.0 + (pulse * 20.0)
+	
 	if top_bar:
 		top_bar.anchor_right = pct
-		top_bar.offset_right = 0
-		top_bar.offset_left = 0
+		top_bar.offset_bottom = bar_height
+		top_bar.color = bar_color
 		
 	if bottom_bar:
 		bottom_bar.anchor_right = pct
-		bottom_bar.offset_right = 0
-		bottom_bar.offset_left = 0
+		bottom_bar.offset_top = - bar_height
+		bottom_bar.color = bar_color
 
 func _trigger_game_over(character):
 	is_game_over = true
