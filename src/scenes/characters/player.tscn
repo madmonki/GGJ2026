@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://3vqeypmxh3su"]
+[gd_scene format=3 uid="uid://b0wo7ti3u20n7"]
 
-[ext_resource type="Script" path="res://src/scripts/entities/player.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://assets/models/Breathing Idle.fbx" id="2_onrkg"]
-[ext_resource type="PackedScene" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
+[ext_resource type="Script" uid="uid://b8og07w37hj84" path="res://src/scripts/entities/player.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://b28u7gr353roa" path="res://assets/models/Breathing Idle.fbx" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 

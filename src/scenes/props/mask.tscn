@@ -1,7 +1,11 @@
-[gd_scene format=3 uid="uid://bp7uk5d2lm1pe"]
+[gd_scene format=3 uid="uid://e0athj1i6q7w"]
 
-[ext_resource type="Script" path="res://src/scripts/entities/mask.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://assets/models/mask.fbx" id="2_oilhy"]
+[ext_resource type="Script" uid="uid://ewrfa2dhmv6a" path="res://src/scripts/entities/mask.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://assets/models/mask.fbx" id="2_oilhy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.4
+height = 1.0
 
 [sub_resource type="Curve" id="Curve_trail"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -15,18 +19,14 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_trail")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trail"]
-render_priority = 10
 transparency = 1
+render_priority = 10
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.352941)
 
 [sub_resource type="BoxMesh" id="BoxMesh_trail"]
 material = SubResource("StandardMaterial3D_trail")
 size = Vector3(0.3, 0.3, 0.3)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
-radius = 0.4
-height = 1.0
 
 [node name="Mask" type="RigidBody3D" unique_id=1717254061]
 collision_layer = 4
@@ -41,6 +41,7 @@ emitting = false
 amount = 40
 lifetime = 0.4
 fixed_fps = 60
+local_coords = false
 process_material = SubResource("ParticleProcessMaterial_trail")
 draw_pass_1 = SubResource("BoxMesh_trail")
 

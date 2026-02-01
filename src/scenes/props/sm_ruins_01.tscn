@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://mnvukvm3wksi"]
+[gd_scene format=3 uid="uid://ileyet6te5ot"]
 
-[ext_resource type="PackedScene" path="res://assets/models/SM_Ruins_01.fbx" id="1_r7qll"]
+[ext_resource type="PackedScene" uid="uid://bkh5k84vbx7sb" path="res://assets/models/SM_Ruins_01.fbx" id="1_r7qll"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r7qll"]
 points = PackedVector3Array(-0.013079368, 0.006820632, 0.006088093, -0.021211898, -0.0013126954, -0.03621349, -0.014706669, -0.0013126954, -0.03621349, -0.021211898, -0.0013126954, 0.006088093, -0.021211898, 0.006820632, -0.03621349, -0.021211898, 0.006820632, 0.006088093, -0.013079368, 0.006820632, -0.03621349, -0.013079368, 0.00031460705, 0.006088093, -0.013079368, 0.00031460705, -0.03621349, -0.014706669, -0.0013126954, 0.006088093)

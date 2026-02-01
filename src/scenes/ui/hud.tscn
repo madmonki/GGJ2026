@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://hudscene1234"]
+
+[ext_resource type="Script" uid="uid://c454gowlxk3el" path="res://src/scripts/ui/hud.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://v1ct0ryovrly" path="res://src/scenes/ui/victory_overlay.tscn" id="2_victory"]
+
+[node name="HUD" type="CanvasLayer" unique_id=999738461]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="TopBar" type="ColorRect" parent="." unique_id=2055271442]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="BottomBar" type="ColorRect" parent="." unique_id=344472029]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PowerLabel" type="Label" parent="." unique_id=873163789]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = 226.0
+offset_right = 283.0
+offset_bottom = 326.00024
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+text = "POWER OF SPRINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverUI" type="Control" parent="." unique_id=136242479]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="GameOverUI" unique_id=646286357]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Label" type="Label" parent="GameOverUI" unique_id=1476583810]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOverUI" unique_id=1390809080]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETRY"
+
+[node name="VictoryOverlay" parent="." unique_id=786406603 instance=ExtResource("2_victory")]
+visible = false

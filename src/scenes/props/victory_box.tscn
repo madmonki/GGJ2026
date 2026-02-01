@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://df6s8f7g8iaj1"]
+
+[ext_resource type="Script" uid="uid://ls66hgwq70ht" path="res://src/scripts/entities/victory_box.gd" id="1_script"]
+[ext_resource type="Material" uid="uid://bcf36tmiv4aex" path="res://assets/materials/gold_accent.tres" id="2_jb7i5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(4, 10, 4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_li6qr"]
+
+[node name="VictoryBox" type="Area3D" unique_id=42660744]
+collision_mask = 3
+script = ExtResource("1_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=130184150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="VisualHint" type="MeshInstance3D" parent="." unique_id=395295145]
+transform = Transform3D(2, 0, 0, 0, 5, 0, 0, 0, 2, 0, 5, 0)
+material_override = ExtResource("2_jb7i5")
+mesh = SubResource("CylinderMesh_li6qr")

@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="ggj2026"
-run/main_scene="res://main.tscn"
+run/main_scene="res://src/scenes/ui/difficulty_menu.tscn"
 config/features=PackedStringArray("4.6")
 
 [autoload]
 
-GameEvents="*res://game_events.gd"
+GameEvents="*res://src/scripts/core/game_events.gd"
 
 [display]
 

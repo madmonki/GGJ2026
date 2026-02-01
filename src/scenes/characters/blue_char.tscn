@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://3vqeypmxh3su"]
+[gd_scene format=3 uid="uid://ts2y1pwrwbb0"]
 
-[ext_resource type="Script" path="res://src/scripts/entities/player.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://assets/models/Breathing Idle.fbx" id="2_onrkg"]
-[ext_resource type="PackedScene" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
+[ext_resource type="Script" uid="uid://b8og07w37hj84" path="res://src/scripts/entities/player.gd" id="1_g80e3"]
+[ext_resource type="PackedScene" uid="uid://b28u7gr353roa" path="res://assets/models/Breathing Idle.fbx" id="2_vndsf"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://assets/models/mask.fbx" id="3_mask_fbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 
@@ -849,27 +849,31 @@ _data = {
 &"Walk": SubResource("Animation_hqtel")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hs0m"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g80e3"]
 animation = &"motion/Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1jxqw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vndsf"]
 animation = &"motion/Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dw050"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dcu6i"]
 animation = &"motion/Run"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_b26j0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_2hs0m")
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hwpg2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_g80e3")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_1jxqw")
+blend_point_1/node = SubResource("AnimationNodeAnimation_vndsf")
 blend_point_1/pos = 2.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_dw050")
+blend_point_2/node = SubResource("AnimationNodeAnimation_dcu6i")
 blend_point_2/pos = 5.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1547108088]
+[node name="BlueChar" type="CharacterBody3D" unique_id=1732683529]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_script")
+script = ExtResource("1_g80e3")
+sprint_speed = 12.0
+jump_velocity = 6.0
+is_stationary = true
+char_color = Color(0.6, 0.7, 0.9, 1)
 dash_force = 100.0
 max_fov_change = 30.0
 
@@ -887,9 +891,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, 0, -3)
 collision_mask = 4
 
-[node name="HeldMaskVisual" parent="Camera3D" unique_id=1669411091 instance=ExtResource("3_mask_fbx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.3, -0.2, -0.5)
-visible = false
+[node name="HeldMaskVisual" parent="Camera3D" unique_id=1232051515 instance=ExtResource("3_mask_fbx")]
+transform = Transform3D(-3, 0, -2.6226832e-07, 0, 3, 0, 2.6226832e-07, 0, -3, 0.3157588, -0.53437316, -0.49372506)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=123456789]
 
@@ -908,8 +911,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.5)
 
-[node name="CharacterModel" parent="." unique_id=2117600298 instance=ExtResource("2_onrkg")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+[node name="CharacterModel" parent="." unique_id=2117600298 instance=ExtResource("2_vndsf")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.034059882, 0)
 
 [node name="Skeleton3D2" type="Skeleton3D" parent="CharacterModel" unique_id=524848076]
 bones/0/name = "mixamorig_Hips"
@@ -1148,8 +1151,8 @@ bones/32/scale = Vector3(1, 1, 1)
 libraries/ = SubResource("AnimationLibrary_8npyw")
 libraries/motion = SubResource("AnimationLibrary_sweqy")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1732757324]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=426253221]
 root_node = NodePath("../CharacterModel")
-tree_root = SubResource("AnimationNodeBlendSpace1D_b26j0")
+tree_root = SubResource("AnimationNodeBlendSpace1D_hwpg2")
 anim_player = NodePath("../CharacterModel/MainAnimationPlayer")
 parameters/blend_position = 0.0

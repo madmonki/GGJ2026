@@ -1,19 +1,18 @@
-[gd_scene format=3 uid="uid://hudscene1234"]
+[gd_scene format=3 uid="uid://bfn8ixphjgx7m"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_script"]
+[ext_resource type="Script" path="res://src/scripts/ui/hud.gd" id="1_script"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=310184921]
 layer = 10
 script = ExtResource("1_script")
 
-[node name="TopBar" type="ColorRect" parent="."]
+[node name="TopBar" type="ColorRect" parent="." unique_id=1127738544]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 20.0
 grow_horizontal = 2
-color = Color(1, 1, 1, 1)
 
-[node name="BottomBar" type="ColorRect" parent="."]
+[node name="BottomBar" type="ColorRect" parent="." unique_id=2139236473]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -21,9 +20,8 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(1, 1, 1, 1)
 
-[node name="GameOverUI" type="Control" parent="."]
+[node name="GameOverUI" type="Control" parent="." unique_id=335127834]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -32,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="GameOverUI"]
+[node name="Background" type="ColorRect" parent="GameOverUI" unique_id=1481059823]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="Label" type="Label" parent="GameOverUI"]
+[node name="Label" type="Label" parent="GameOverUI" unique_id=1956847903]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,7 +56,7 @@ theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="RetryButton" type="Button" parent="GameOverUI"]
+[node name="RetryButton" type="Button" parent="GameOverUI" unique_id=1861847266]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
