@@ -1154,3 +1154,5 @@ root_node = NodePath("../CharacterModel")
 tree_root = SubResource("AnimationNodeBlendSpace1D_0yrg1")
 anim_player = NodePath("../CharacterModel/MainAnimationPlayer")
 parameters/blend_position = 0.0
+
+
