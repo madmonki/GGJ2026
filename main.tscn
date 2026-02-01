@@ -132,7 +132,7 @@ dash_force = 10.0
 max_fov_change = 15.0
 
 [node name="RedChar11" parent="." unique_id=346977412 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.28737, 13.937076, -58.587257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.812614, 14.727691, -58.587257)
 is_stationary = true
 dash_force = 10.0
 max_fov_change = 15.0
@@ -280,7 +280,7 @@ transform = Transform3D(-2.6226832e-08, 0, -0.59999996, 0, 0.59999996, 0, 0.5999
 transform = Transform3D(-0.59996486, 0, -0.006492483, 0, 0.59999996, 0, 0.006492483, 0, -0.59996486, -63.491302, -48.4327, -58.765186)
 
 [node name="Rock_Vertical52" parent="." unique_id=1154887345 instance=ExtResource("12_dg77c")]
-transform = Transform3D(-0.6130333, 0, 0.006575909, 5.7995414e-10, -0.13312145, 5.3124563e-08, -0.006633903, -1.1637847e-08, -0.6076741, -63.491302, 6.8021946, -58.765186)
+transform = Transform3D(0.3622139, -1.8610846e-08, -0.49050647, 1.1597785e-09, -0.13299999, 1.06299865e-07, -0.4945403, -1.3942964e-08, -0.35925952, -64.8479, 6.548958, -58.765186)
 
 [node name="Rock_Vertical36" parent="." unique_id=503478146 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-2.6226829e-08, 0, -0.5999999, -8.940697e-08, -0.59999996, 5.3290705e-15, -0.59999996, 8.940697e-08, 2.6226829e-08, 24.723438, 21.75476, -84.690315)

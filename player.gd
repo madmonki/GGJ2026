@@ -89,10 +89,40 @@ func _process(delta):
 	if anim_tree:
 		var speed = Vector2(velocity.x, velocity.z).length()
 		anim_tree.set("parameters/blend_position", speed)
-		# print("Speed: ", speed, " Blend: ", anim_tree.get("parameters/blend_position"))
+	
+	# Update Camera/Visuals (Move from _physics_process for performance)
+	if is_controlled:
+		_update_camera_visuals(delta)
 	else:
-		if Engine.get_process_frames() % 60 == 0:
-			print("AnimTree not found in player")
+		# Return camera to neutral on NPCs/Unpossessed
+		camera.rotation.z = lerp(camera.rotation.z, 0.0, delta * 5.0)
+		camera.fov = lerp(camera.fov, base_fov, delta * 5.0)
+
+func _update_camera_visuals(delta):
+	# Target tilt based on mouse X input (banking)
+	var target_tilt = - mouse_input_x * cam_tilt_amount
+	target_tilt = clamp(target_tilt, -0.1, 0.1)
+	camera.rotation.z = lerp(camera.rotation.z, target_tilt, delta * cam_tilt_speed)
+	mouse_input_x = lerp(mouse_input_x, 0.0, delta * 10.0)
+	
+	# Dynamic Jumpy FOV Logic
+	var look_dir = - camera.global_transform.basis.z
+	var speed_in_look_dir = velocity.dot(look_dir)
+	speed_in_look_dir = max(0.0, speed_in_look_dir)
+	
+	speed_in_look_dir -= walk_speed
+	speed_in_look_dir = clamp(speed_in_look_dir, 0, speed_in_look_dir)
+	var fov_offset = remap(speed_in_look_dir, 0, 20, 0, max_fov_change)
+	fov_offset = clamp(fov_offset, 0, max_fov_change)
+	
+	if speed_in_look_dir > 1.0:
+		fov_offset += randf_range(-fov_jitter_strength, fov_jitter_strength)
+		
+	var target_fov = base_fov + fov_offset
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		target_fov = zoom_fov
+		
+	camera.fov = lerp(camera.fov, target_fov, delta * zoom_lerp_speed)
 
 func _apply_char_color():
 	var mat = StandardMaterial3D.new()
@@ -156,6 +186,8 @@ var mouse_input_x = 0.0
 @export var base_fov = 75.0
 @export var max_fov_change = 15.0 # How much it can zoom in/out
 @export var fov_jitter_strength = 0.2 # How "jumpy" the FOV is
+@export var zoom_fov = 30.0
+@export var zoom_lerp_speed = 10.0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -178,36 +210,9 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
-	# Camera Tilt Logic
-	if is_controlled:
-		# Target tilt based on mouse X input (banking)
-		var target_tilt = - mouse_input_x * cam_tilt_amount
-		target_tilt = clamp(target_tilt, -0.1, 0.1)
-		camera.rotation.z = lerp(camera.rotation.z, target_tilt, delta * cam_tilt_speed)
-		mouse_input_x = lerp(mouse_input_x, 0.0, delta * 10.0)
-		
-		# Dynamic Jumpy FOV Logic
-		# Calculate speed along look direction
-		var look_dir = - camera.global_transform.basis.z
-		var speed_in_look_dir = velocity.dot(look_dir)
-		speed_in_look_dir = max(0.0, speed_in_look_dir) # Only forward movement counts
-		
-		# Decrease FOV based on speed (Zoom in effect)
-		# Max speed approx 25 (dash) -> Map to max_fov_change
-		speed_in_look_dir -= walk_speed
-		speed_in_look_dir = clamp(speed_in_look_dir, 0, speed_in_look_dir)
-		var fov_offset = remap(speed_in_look_dir, 0, 20, 0, max_fov_change)
-		fov_offset = clamp(fov_offset, 0, max_fov_change)
-		
-		# Add jitter if moving
-		if speed_in_look_dir > 1.0:
-			fov_offset += randf_range(-fov_jitter_strength, fov_jitter_strength)
-			
-		camera.fov = lerp(camera.fov, base_fov + fov_offset, delta * 5.0)
-		
-	else:
-		camera.rotation.z = lerp(camera.rotation.z, 0.0, delta * 5.0)
-		camera.fov = lerp(camera.fov, base_fov, delta * 5.0)
+	# Optimization: Skip physics for stationary NPCs on the ground
+	if not is_controlled and is_stationary and is_on_floor():
+		return
 
 	if not is_on_floor():
 		var applied_gravity = gravity
