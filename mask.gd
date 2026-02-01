@@ -28,7 +28,8 @@ func _apply_color(_color: Color):
 		# Reverted to neutral white/grey as per user request
 		material.albedo_color = Color(0.9, 0.9, 0.9)
 		material.emission_enabled = false
-		material.transparency = StandardMaterial3D.TRANSPARENCY_ALPHA
+		# Keep in opaque pass by default to fix trail sorting issues
+		material.transparency = StandardMaterial3D.TRANSPARENCY_DISABLED
 		for i in range(mesh_instance.get_surface_override_material_count()):
 			mesh_instance.set_surface_override_material(i, material)
 
@@ -83,3 +84,31 @@ func set_transparency(value: float):
 	_get_all_meshes(self, meshes)
 	for mesh_instance in meshes:
 		mesh_instance.transparency = value
+		# Also update materials to enable/disable alpha blending passthrough
+		for i in range(mesh_instance.get_surface_override_material_count()):
+			var mat = mesh_instance.get_surface_override_material(i)
+			if mat is StandardMaterial3D:
+				if value > 0.01:
+					mat.transparency = StandardMaterial3D.TRANSPARENCY_ALPHA
+				else:
+					mat.transparency = StandardMaterial3D.TRANSPARENCY_DISABLED
+
+func _physics_process(_delta):
+	if is_attached:
+		if has_node("TrailParticles"):
+			$TrailParticles.emitting = false
+		return
+		
+	if was_thrown and is_active:
+		var speed = linear_velocity.length()
+		if speed > 5.0:
+			if has_node("TrailParticles"):
+				$TrailParticles.emitting = true
+				# Increase lifetime scaling for a longer trail
+				$TrailParticles.lifetime = clamp(speed * 0.04, 0.4, 1.0)
+		else:
+			if has_node("TrailParticles"):
+				$TrailParticles.emitting = false
+	else:
+		if has_node("TrailParticles"):
+			$TrailParticles.emitting = false

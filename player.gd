@@ -216,6 +216,11 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
+	# Fall death condition
+	if not is_dead and global_position.y < -60.0:
+		die()
+		return
+
 	# Optimization: Skip physics for stationary NPCs on the ground
 	if not is_controlled and is_stationary and is_on_floor():
 		return
