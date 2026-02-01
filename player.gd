@@ -43,7 +43,7 @@ var is_dashing = false
 @onready var anim_tree = $AnimationTree
 var model_mesh_instance: MeshInstance3D = null
 
-var doom_duration = 100
+var doom_duration = 15
 var doom_timer = 0.0
 var doom_active = false
 var is_dead = false
