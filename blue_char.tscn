@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b8og07w37hj84" path="res://player.gd" id="1_g80e3"]
 [ext_resource type="PackedScene" uid="uid://b28u7gr353roa" path="res://models/Breathing Idle.fbx" id="2_vndsf"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://models/mask.fbx" id="3_mask_fbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
 
 [sub_resource type="Animation" id="Animation_ti4ac"]
 resource_name = "mixamo_com"
@@ -892,10 +891,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, 0, -3)
 collision_mask = 4
 
-[node name="HeldMaskVisual" type="MeshInstance3D" parent="Camera3D" unique_id=311539305]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0.3, -0.2, -0.5)
-visible = false
-mesh = SubResource("CapsuleMesh_1")
+[node name="HeldMaskVisual" parent="Camera3D" unique_id=1232051515 instance=ExtResource("3_mask_fbx")]
+transform = Transform3D(-3, 0, -2.6226832e-07, 0, 3, 0, 2.6226832e-07, 0, -3, 0.3157588, -0.53437316, -0.49372506)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=123456789]
 
