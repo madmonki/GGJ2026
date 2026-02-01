@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.6")
 
 GameEvents="*res://game_events.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
+
 [input]
 
 move_forward={
