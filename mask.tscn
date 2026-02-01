@@ -1,10 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://e0athj1i6q7w"]
 
-[ext_resource type="Script" path="res://mask.gd" id="1_script"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
-radius = 0.4
-height = 1.0
+[ext_resource type="Script" uid="uid://ewrfa2dhmv6a" path="res://mask.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://bgq5afprfupln" path="res://models/mask.fbx" id="2_oilhy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.4
@@ -12,26 +9,24 @@ height = 1.0
 
 [node name="Mask" type="RigidBody3D" unique_id=1717254061]
 collision_layer = 4
-collision_mask = 1
-script = ExtResource("1_script")
 mass = 0.01
 contact_monitor = true
 max_contacts_reported = 4
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=151660326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_1")
+script = ExtResource("1_script")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=817989730]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.32691658)
 shape = SubResource("CapsuleShape3D_1")
 
 [node name="HitDetector" type="Area3D" parent="." unique_id=11223344]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetector" unique_id=2055657413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22077209, 0.31990147)
 shape = SubResource("CapsuleShape3D_1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=398427539]
+
+[node name="mask" parent="." unique_id=1232051515 instance=ExtResource("2_oilhy")]
+transform = Transform3D(-3.998417, 0, -0.11252409, 0, 4, 0, 0.11252409, 0, -3.998417, 0.010683417, -0.40230483, 0.35531628)

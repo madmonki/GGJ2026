@@ -70,6 +70,12 @@ func _ready():
 	else:
 		unpossess()
 
+func _get_all_meshes(node: Node, list: Array):
+	if node is MeshInstance3D:
+		list.append(node)
+	for child in node.get_children():
+		_get_all_meshes(child, list)
+
 func _find_first_mesh(node: Node) -> MeshInstance3D:
 	if node is MeshInstance3D:
 		return node
@@ -151,7 +157,7 @@ func possess():
 	# Set attached mask transparency if it exists
 	for child in camera.get_children():
 		if child.is_in_group("masks") and child.has_method("set_transparency"):
-			child.set_transparency(0.8) # 80% transparent to not block view
+			child.set_transparency(0.2) # Clearer view for player
 
 func unpossess():
 	is_controlled = false
@@ -315,6 +321,9 @@ func _try_pickup_mask() -> bool:
 		if collider.is_in_group("masks") and not collider.is_attached:
 			# Pickup goes to face now instead of hand
 			collider.attach_to(camera)
+			if collider.has_method("set_transparency"):
+				collider.set_transparency(0.2)
+			
 			is_holding_mask = false # Stays on face until detached
 			if held_mask_visual:
 				held_mask_visual.visible = false
@@ -323,12 +332,17 @@ func _try_pickup_mask() -> bool:
 
 func _update_held_mask_color():
 	if held_mask_visual:
-		var material = StandardMaterial3D.new()
-		# Match the neutral mask look
-		material.albedo_color = Color(0.9, 0.9, 0.9)
-		material.emission_enabled = false
-		# Unique instance for held visual
-		held_mask_visual.set_surface_override_material(0, material)
+		var meshes = []
+		_get_all_meshes(held_mask_visual, meshes)
+		for mesh_instance in meshes:
+			var material = StandardMaterial3D.new()
+			# Match the neutral mask look
+			material.albedo_color = Color(0.9, 0.9, 0.9)
+			material.emission_enabled = false
+			material.transparency = StandardMaterial3D.TRANSPARENCY_ALPHA
+			# Unique instance for held visual
+			for i in range(mesh_instance.get_surface_override_material_count()):
+				mesh_instance.set_surface_override_material(i, material)
 
 var is_detaching_self = false
 var current_detaching_mask: Node3D = null

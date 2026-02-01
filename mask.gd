@@ -12,17 +12,25 @@ func _ready():
 	max_contacts_reported = 4
 	body_entered.connect(_on_body_entered)
 	$HitDetector.body_entered.connect(_on_character_hit)
-	
 	_apply_color(mask_color)
+
+func _get_all_meshes(node: Node, list: Array):
+	if node is MeshInstance3D:
+		list.append(node)
+	for child in node.get_children():
+		_get_all_meshes(child, list)
+
 func _apply_color(_color: Color):
-	if has_node("MeshInstance3D"):
-		var mesh_instance = $MeshInstance3D
+	var meshes = []
+	_get_all_meshes(self, meshes)
+	for mesh_instance in meshes:
 		var material = StandardMaterial3D.new()
 		# Reverted to neutral white/grey as per user request
 		material.albedo_color = Color(0.9, 0.9, 0.9)
 		material.emission_enabled = false
 		material.transparency = StandardMaterial3D.TRANSPARENCY_ALPHA
-		mesh_instance.set_surface_override_material(0, material)
+		for i in range(mesh_instance.get_surface_override_material_count()):
+			mesh_instance.set_surface_override_material(i, material)
 
 func _on_character_hit(body):
 	if not is_active or is_attached or not was_thrown:
@@ -71,5 +79,7 @@ func _finalize_attachment():
 	rotation = Vector3.ZERO
 
 func set_transparency(value: float):
-	if has_node("MeshInstance3D"):
-		$MeshInstance3D.transparency = value
+	var meshes = []
+	_get_all_meshes(self, meshes)
+	for mesh_instance in meshes:
+		mesh_instance.transparency = value
